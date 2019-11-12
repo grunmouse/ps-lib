@@ -1,0 +1,198 @@
+/2== {
+	2 array astore
+	== ==
+} def
+
+%Дублирует вектор
+/2dup{
+	2 copy
+} def
+
+%Меняет местами два вектора
+/2exch{
+	4 2 roll
+} def
+
+%Прокручивает вектора, как roll, но за единицу считаются два элемента стека
+/2roll{
+	2 2mul
+	roll
+} def
+
+%Получает из стека вектор по номеру, начиная с 0, введённый индекс - не считается.
+/2index {
+	2 mul 1 add dup
+	1 add index exch index
+} def
+
+%Создаёт процедуру, вводящую вектор
+%[/name, x, y]
+/2def {
+	2 array astore
+	cvx
+	def
+} def
+
+%Синтаксический сахар для 2def, чтобы использовать для аргументов процедур.
+%[x, y, /name]
+/2edef {
+	3 1 roll
+	2def
+} def
+
+% Сумма векторов
+%[x0, y0, x1, y1]
+/2add {
+	exch 3 1 roll
+	%[x0, x1, y0, y1]
+	add
+	3 1 roll
+	add
+	exch
+} def
+%[x0+x1, y0+y1]
+
+% разность векторов
+/2sub {
+	exch 3 1 roll
+	sub
+	3 1 roll
+	sub
+	exch
+} def
+
+%произведение вектора на число
+%[x, y, a]
+/2mul {
+	exch
+	1 index
+	mul
+	3 1 roll
+	mul
+	exch
+} def
+
+%деление вектора на число
+/2div {
+	exch
+	1 index
+	div
+	3 1 roll
+	div
+	exch
+} def
+
+%скалярное произведение векторов
+%[x0, y0, x1, y1]
+/2cdot {
+	exch 3 1 roll
+	%[x0, x1, y0, y1]
+	mul
+	3 1 roll
+	mul
+	%[y0*y1, x0*x1]
+	add
+} def
+
+%псевдоскалярное произведение векторов
+%[x0, y0, x1, y1]
+/2times {
+	4 -1 roll
+	%[y0, x1, y1, x0]
+	mul
+	%[y0, x1, y1*x0]
+	3 1 roll
+	mul
+	%[y1*x0, y0*x1]
+	sub
+}
+
+% квадрат вектора
+/2sq {
+	dup mul
+	exch
+	dup mul
+	add
+} def
+
+%модуль вектора
+/2hypot {
+	2sq sqrt
+} def
+
+%орт вектора
+/2ort {
+	2dup
+	2hypot
+	2div
+} def
+
+%проекция вектора a на вектор b, направленная вдоль вектора a, в направлении, зависящем от знака
+%[ax, ay, bx, by]
+/2proj {
+	0 dict begin
+		/b 2edef
+		/a 2edef
+		b
+		a b 2cdot %(a,b)
+		b 2sq %(b^2)
+		div
+		%[bx, by, (a,b)/b^2]
+		2mul
+	end
+} def
+
+% Оргтгонализация Грама-Шмидта
+%[ax, ay, bx, by]
+% Возвращает вектор, равный составляющей a перпендикулярной b
+/2ortogonal {
+	0 dict begin
+		/B 2edef
+		2dup
+		%[ax, ay, ax, ay]
+		B 2proj
+		2sub
+	end
+} def
+
+%[x1, y1, x2, y2, R]
+/myarct {
+	0 dict begin
+		/R exch def
+		/C 2edef
+		/B 2edef
+		/A currentpoint 2def
+		
+		/BA A B 2sub 2def
+		/BC C B 2sub 2def
+		
+		BC BA 2ortogonal 2ort
+		BA BC 2ortogonal 2ort
+		2add
+		R 2mul
+		/BD 2edef
+		/BM BD BA 2proj 2def
+		/BN BD BC 2proj 2def
+		
+		/M B BM 2add 2def
+		/N B BN 2add 2def
+		
+		M moveto
+		B N R arct
+	end
+} def
+
+newpath
+	0 0 moveto
+	0 200 
+	200 200
+	100 arct
+stroke
+
+50 0 translate
+newpath
+	0 0 moveto
+	0 200 
+	200 200
+	100 myarct
+stroke
