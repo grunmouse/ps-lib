@@ -1,3 +1,8 @@
+(unicode-dict.ps) stealfile
+(traverse.ps) stealfile
+
+/unicode-name unicode invert def
+
 %Расшифровывает байт кодировки utf8, выделяя количество ведущих единиц
 % и значение смысловой части
 %[int]
@@ -82,39 +87,41 @@
 		]
 	}
 } def
-%[
-
-%[dict, key]
-/safeGet {
-	2 copy known not
-	{pop pop 0}
-	{get}
-	ifelse
-} def
-
-%преобразует число в имя, используется для словарей с числовыми ключами
-/intcvn {
-	16 string cvs cvn
-} def
 
 
+
+%Принимает на вход массив имён символов и словарь юникода
+%возвращает массив номеров юникодных точек
 %[arr]
-/makestring {
-	0 dict begin
-		/arr exch def
-		/len arr length def
-		/result len string def
-		0 1 len 1 sub
+/unicode-encoding {
+	0 dict begin 
+		/source exch def
+		/len source length def
+		/arr len array def
+		/dic len dict def
+		
+		source
 		{
-			/i exch def
+			%[proc, source, value, key]
+			exch
+			%[index, name]
+			unicode exch get
+			%[index, codepoint]
 			
-			result
-			i
-			arr i get 
-			put
+			2 copy
+			arr 3 1 roll put
+			
+			%[index, codepoint]
+			intcvn
+			%[index, /codepoint]
+			exch
+			dic 3 1 roll put
+			%[]
+			
+			%[proc, source]
 		}
-		for
-		result
+		forallpairs
+		
+		arr dic
 	end
 } def
-

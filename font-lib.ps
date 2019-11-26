@@ -29,7 +29,9 @@
 	copy
 } def
 
-%[arr1, arr2]
+
+%Копирует значения из from в into, причём /.notdef считается отсутствием значения и не копируется
+%[from, into]
 /merge-encoding {
 	0 dict begin
 		/from exch def
@@ -51,7 +53,7 @@
 		result
 	end
 } def
-%[new arr]
+%[into]
 
 /create-code-pair {
 	2 dict

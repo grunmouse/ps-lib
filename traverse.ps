@@ -1,0 +1,144 @@
+%Процедуры для обхода словарей, структур и строк
+
+%[{array|string|dict}source, proc]
+/forallpairs {
+	exch
+	
+	%[proc, source]
+	dup type (dicttype) eq
+	{
+		%[proc, source]
+		dup
+		{
+			%[proc, source, value, key]
+			exch
+			3 index exec
+		} forall
+	}
+	{
+		%[proc, source]
+		0 1 
+		2 index length 1 sub
+		{
+			%[proc, source, i]
+			2 copy get
+			%[proc, source, i, value]
+			exch
+			%[proc, source, value, i]
+			3 index exec
+		} for
+	}
+	ifelse
+	pop
+	pop
+} def
+
+
+%[{array|string|dict}source, proc, {array|string|dict}result]
+/mappairs {
+	3 -1 roll
+	%[proc, result, source]
+		
+	%[source]
+	{
+		%[proc, result, thisproc, source, value, key]
+		5 index 
+		exec %proc
+		%[proc, result, thisproc, source, newvalue, newkey]
+		4 index 
+		3 1 roll
+		exch
+		put
+	}
+	forallpairs
+	%[proc, result]
+	exch pop
+} def
+
+/==dict {
+	(<<) ==
+	{
+		exch == ==
+	}forall
+	(>>) ==
+} def
+
+%[dict, key]
+/safeGet {
+	2 copy known not
+	{pop pop 0}
+	{get}
+	ifelse
+} def
+
+%преобразует число в имя, используется для словарей с числовыми ключами
+/intcvn {
+	40 string cvs cvn
+} def
+
+/anycvn {
+	dup type
+	<<
+		/stringtype {cvn}
+		/nametype {}
+		/integertype {intcvn}
+		/realtype {intcvn}
+	>>
+	exch get exec
+} def
+
+
+%[{array|string|dict}source]
+/invert {
+	{
+		exch anycvn
+	}
+	0 dict
+	mappairs
+} def
+%[dict]
+
+/dict-keys {
+	0 dict begin
+		/source exch def
+		/i 0 def
+		source
+		{
+			%[value, key]
+			exch pop
+			i
+			/i i 1 add def
+		}
+		source length array
+		mappairs
+	end
+} def
+
+/dict-values {
+	0 dict begin
+		/source exch def
+		/i 0 def
+		source
+		{
+			%[value, key]
+			pop
+			i
+			/i i 1 add def
+		}
+		source length array
+		mappairs
+	end
+} def
+
+%[{array|string}source]
+/unique {
+	{
+		%[value, key]
+		pop dup anycvn
+		%[value, key]
+	}
+	0 dict
+	mappairs
+	dict-values
+} def
+
