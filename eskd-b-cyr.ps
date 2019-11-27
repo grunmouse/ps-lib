@@ -1,0 +1,703 @@
+%Набор кириллических глифов для использования с ЕСКД-шрифтами
+
+/eskd-b-cyrillic <<
+	/CyrillicCapitalLetterA {
+		7 upperceilbegin
+			1 setlinejoin
+			0 0 moveto
+			center top lineto
+			right 0 lineto
+			center top div 2 mul dup 2 moveto
+			right exch sub 2 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterBe {
+		6 upperfloorbegin
+			0 top moveto
+			0 0 lineto
+			1 right middle glifrc
+			0 top moveto
+			right 1 sub 0 rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterVe {
+		6 upperfloorbegin
+			0 top moveto
+			0 0 lineto
+			1 right middle glifrc
+			0 top moveto
+			right 1 sub 1 xlinearcdown
+			middle 2 ylinearcleft
+			
+		end
+	}
+	/CyrillicCapitalLetterGhe {
+		4 upperfloorbegin
+			0 0 moveto
+			0 top lineto
+			right 1 add top lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterDe {
+		5 upperfloorbegin
+			-1 -1 moveto
+			-1 0 lineto
+			right 1 add 0 lineto
+			0 -1 rlineto
+			0 0 moveto
+			1 setlinejoin 
+			1  top lineto
+			right top  lineto
+			0 setlinejoin 
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterIe {
+		5 upperfloorbegin
+			right 0 moveto
+			0 0 lineto
+			0 top lineto
+			right top lineto
+			0 middle moveto
+			3 0 rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterIo {
+		CharProcs /CyrillicCapitalLetterIe get exec
+		stroke
+		overbegin
+			subglyph /uml get exec
+		end		
+	}
+	/CyrillicCapitalLetterZhe {
+		8 upperfloorbegin
+			
+			center 0 moveto
+			center top lineto
+			
+			center middle moveto
+			right top lineto
+			center middle moveto
+			0 top lineto
+			
+			center middle moveto 
+			top middle sub center div dup
+			1 exch rmoveto
+			right 0 lineto
+			
+			center middle moveto
+			-1 exch rmoveto
+			0 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterZe {
+		5 upperfloorbegin
+			1 setlinecap
+			0 1 moveto
+			1 1 -1 arcty
+			right 2 xlinearcup
+			middle 2 ylinearcleft
+			-1 0 rlineto
+			1 0 rmoveto
+			2 1 1 arctx
+			top 1 ylinearcleft
+			0 1 xlinearcdown
+			
+		end
+	}
+	/CyrillicCapitalLetterI {
+		6 upperfloorbegin
+			1 setlinejoin 
+			0 top moveto
+			0 0 lineto
+			right top lineto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterShortI {
+		2 setlinecap
+		CharProcs /CyrillicCapitalLetterI get exec
+		stroke
+		overbegin
+			subglyph /breve get exec
+		end
+	}
+	/CyrillicCapitalLetterKa {
+		5 upperfloorbegin
+			0 0 moveto
+			0 top lineto
+			0 middle moveto
+			right top lineto
+			0 middle moveto 1 top middle sub middle div 1 rmoveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterEl {
+		6 upperfloorbegin
+			0 0 moveto
+			2 top lineto
+			right top lineto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterEm {
+		7 upperfloorbegin
+			1 setlinejoin 
+			0 0 moveto
+			0 top lineto
+			center middle lineto
+			right top lineto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterEn {
+		6 upperfloorbegin
+			0 0 moveto
+			0 top rlineto
+			
+			right 0 moveto
+			0 top rlineto
+			
+			0 middle moveto
+			right 0 rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterO {
+		6 upperfloorbegin
+			0 0 moveto
+			2 right top glifo
+			
+		end
+	}
+	/CyrillicCapitalLetterPe {
+		6 upperfloorbegin
+			0 0 moveto
+			0 top lineto
+			right top lineto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterEr {
+		6 upperceilbegin
+			0 0 moveto
+			0 top lineto
+			0 middle moveto
+			1 right top glifrc
+			
+		end
+	}
+	/CyrillicCapitalLetterEs {
+		6 upperceilbegin
+			right top moveto
+			1 0 0 glifc
+			
+		end
+	}
+	/CyrillicCapitalLetterTe {
+		6 upperceilbegin
+			center 0 moveto
+			0 top rlineto
+			0 top moveto
+			right 0 rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterU {
+		6 upperceilbegin
+			0 top moveto
+			middle 1 ylinearcright
+			right middle lineto
+			right top moveto
+			0 2 ylinearcleft
+			1 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterEf {
+		8 upperceilbegin
+			center 0 moveto
+			0 top rlineto
+			0 2 moveto
+
+				2 
+				right 
+				top 2 sub 
+			glifo
+			
+		end
+	}
+	/CyrillicCapitalLetterHa {
+		7 upperceilbegin
+			0 0 moveto
+			right top lineto
+			0 top moveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterTse {
+		6 upperceilbegin
+			0 top  moveto
+			0 0 lineto
+			g 0 lineto
+			0 -1 rlineto
+			right top moveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterChe {
+		6 upperceilbegin
+			0 top moveto
+			middle 1 ylinearcright
+			right middle lineto
+			right top moveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterSha {
+		8 upperceilbegin
+			0 top moveto
+			0 0 lineto
+			right 0 lineto
+			right top lineto
+			center 0 moveto
+			0 top rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterShcha {
+		8 upperceilbegin
+			0 top moveto
+			0 0 lineto
+			right 0 lineto
+			right top lineto
+			center 0 moveto
+			0 top rlineto
+			right 1 add 0 moveto
+			0 -1 rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterHardSign {
+		6 upperfloorbegin
+			0 0 moveto
+			1 right middle glifrc
+			0 0 moveto
+			0 top lineto
+			-2 0 rlineto
+			
+		end
+	}
+	/CyrillicCapitalLetterYeru {
+		7 upperfloorbegin
+			0 0 moveto
+			1 4 middle glifrc
+			0 0 moveto
+			0 top lineto
+			right top moveto
+			right 0 lineto
+			
+		end		
+	}
+	/CyrillicCapitalLetterSoftSign {
+		6 upperfloorbegin
+			0 0 moveto
+			1 right middle glifrc
+			0 0 moveto
+			0 top lineto
+		end
+	}
+	/CyrillicCapitalLetterE {
+		6 upperfloorbegin
+			0 0 moveto
+			1 right top glifrc
+			right middle moveto
+			center middle lineto
+			
+		end
+	}
+	/CyrillicCapitalLetterYu {
+		7 upperfloorbegin
+			0 0 moveto 0 top lineto
+			0 middle moveto	2 0 rlineto
+			2 0 moveto
+			2 right top glifo
+			
+		end
+	}
+	/CyrillicCapitalLetterYa {
+		6 upperceilbegin
+			1 setlinecap
+			right 0 moveto
+			right top lineto
+			
+			1 0 middle glifc
+			center middle moveto
+			
+			0 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterA {
+		5 lowerbegin
+			right top moveto
+			0 1 xlinearcdown
+			0 1 ylinearcright
+			right 1 xlinearcup
+			right top lineto
+			right 1 moveto
+			1 -1 rlineto
+			
+		end
+	}
+	/CyrillicSmallLetterBe {
+		5 lowerbegin
+			1 setlinejoin
+			right 1 sub dup top moveto
+			neg 3 rlineto
+			right 0 rlineto
+			0 0 moveto
+			1 right top glifo
+			
+		end
+	}
+	/CyrillicSmallLetterVe {
+		5 lowerbegin
+			0 top moveto
+			right 1 xlinearcdown
+			0 1 ylinearcleft
+			0 1 xlinearcup
+			top 3 add 1 ylinearcright
+			2 1 xlinearcdown
+			1 top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterGhe {
+		4 lowerbegin
+			1 setlinejoin
+			1 setlinecap
+			0 top moveto 0 -1 rmoveto
+			1 1 1 arcty
+			right 1 xlinearcdown
+			0 2 lineto
+			0 1 ylinearcright
+			right 0.5 add 1 xlinearcup
+			
+		end
+	}
+	/CyrillicSmallLetterDe {
+		5 lowerbegin
+			0 top moveto 1 3 rmoveto
+			right 1 xlinearcdown
+			0 1 ylinearcleft
+			0 1 xlinearcup
+			top 1 ylinearcright
+			right 1 xlinearcdown
+			
+		end
+	}
+	/CyrillicSmallLetterIe {
+		5 lowerbegin
+			right 0 moveto
+			0 1 xlinearcup
+			top 1 ylinearcright
+			right 1 xlinearcdown
+			middle 1 ylinearcleft
+			0 middle lineto
+			
+		end
+	}
+	/CyrillicSmallLetterIo {
+		CharProcs /CyrillicSmallLetterIe get exec
+		stroke
+		overbegin
+			subglyph /uml get exec
+		end		
+	}
+	/CyrillicSmallLetterZhe {
+		7 lowerbegin
+			center  0  moveto
+			center  top lineto
+			
+			center  middle moveto
+			right top lineto
+
+			center  middle moveto
+			0  top lineto
+
+			center  middle moveto 0.5 0.5 rmoveto
+			right 0  lineto
+			center  middle moveto -0.5 0.5 rmoveto
+			0  0  lineto
+			
+		end
+	}
+	/CyrillicSmallLetterZe {
+		4 lowerbegin
+			1 setlinecap
+			0 1 moveto
+			1 1 -1 arcty
+			right 1 xlinearcup
+			middle 1 ylinearcleft
+			-1 0 rlineto
+			1 0 rmoveto
+			1 1 1 arctx
+			top 1 ylinearcleft
+			0 1 xlinearcdown
+			
+		end
+	}
+	/CyrillicSmallLetterI {
+		5 lowerbegin
+			0 top moveto
+			0 1 ylinearcright
+			right 0 lineto
+			right top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterShortI {
+		CharProcs /CyrillicSmallLetterI get exec
+		stroke
+		overbegin
+			subglyph /breve get exec
+		end		
+	}
+	/CyrillicSmallLetterKa {
+		5 lowerbegin
+			0 0 moveto
+			0 top lineto
+			0 middle 1 sub moveto
+			right top lineto
+			0 middle moveto 2 middle right div 2 mul 1 sub rmoveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterEl {
+		5 lowerbegin
+			1 setlinejoin
+			0 0 moveto
+			2 top lineto
+			0 setlinejoin
+			right top lineto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterEm {
+		5 lowerbegin
+			1 setlinejoin
+			0 0 moveto
+			0 top lineto
+			center middle lineto
+			right top lineto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterEn {
+		5 lowerbegin
+			0 0 moveto
+			0 top lineto
+			0 middle moveto
+			right middle lineto
+			right 0 moveto
+			right top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterO {
+		5 lowerbegin
+			0 0 moveto
+			1 right top glifo
+			
+		end
+	}
+	/CyrillicSmallLetterPe {
+		5 lowerbegin
+			0 0 moveto
+			0 top lineto
+			right 1 xlinearcdown
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterEr {
+		5 lowerbegin
+			0 top moveto
+			0 -3 lineto
+			0 0 moveto
+			1 right top glifrc
+			
+		end
+	}
+	/CyrillicSmallLetterEs {
+		4 lowerbegin
+			right top moveto
+			1 0 0 glifc
+			
+		end
+	}
+	/CyrillicSmallLetterTe {
+		7 lowerbegin
+			0 0 moveto
+			0 top lineto
+			right 1 xlinearcdown
+			right 0 lineto
+			center top moveto
+			center 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterU {
+		5 lowerbegin
+			0 top moveto
+			0 1 ylinearcright
+			right 0 lineto
+			right top moveto
+			-3 2 ylinearcleft
+			1 -3 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterEf {
+		7 lowerbegin
+			0 0 moveto
+			1 right top glifo
+			center top moveto 0 2 rmoveto 
+			center -3 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterHa {
+		5 lowerbegin
+			0 0 moveto
+			right top lineto
+			right 0 moveto
+			0 top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterTse {
+		4 lowerbegin
+			0 top moveto
+			0 0 lineto
+			right 1 add 0 lineto
+			0 -1 rlineto
+			right top moveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterChe {
+		5 lowerbegin
+			0 top moveto
+			middle 1 ylinearcright
+			right middle lineto
+			right top moveto
+			right 0 lineto
+			
+		end
+	}
+	/CyrillicSmallLetterSha {
+		7 lowerbegin
+			0 top moveto
+			0 1 ylinearcright
+			right 0 lineto
+			right top lineto
+			center 0 moveto
+			center top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterShcha {
+		7 lowerbegin
+			0 top moveto
+			0 1 ylinearcright
+			right 0 lineto
+			right top lineto
+			center 0 moveto
+			center top lineto
+			right 1 add 0 moveto
+			0 -1 rlineto
+			
+		end
+	}
+	/CyrillicSmallLetterHardSign {
+		5 lowerbegin
+			0 0 moveto
+			1 right middle glifrc
+			0 0 moveto
+			0 top lineto
+			-1 0 rlineto
+			
+		end
+	}
+	/CyrillicSmallLetterYeru {
+		6 lowerbegin
+			0 0 moveto
+			1 3 middle glifrc
+			0 0 moveto
+			0 top lineto
+			right 0 moveto
+			right top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterSoftSign {
+		5 lowerbegin
+			0 0 moveto
+			1 right middle glifrc
+			0 0 moveto
+			0 top lineto
+			
+		end
+	}
+	/CyrillicSmallLetterE {
+		5 lowerbegin
+			0 0 moveto
+			1 right top glifrc
+			right middle moveto
+			-2 0 rlineto
+			
+		end
+	}
+	/CyrillicSmallLetterYu {
+		6 lowerbegin
+			0 0 moveto 0 top lineto
+			0 middle moveto 2 0 rlineto
+			2 0 moveto
+			1 right top glifo
+			
+		end
+	}
+	/CyrillicSmallLetterYa {
+		5 lowerbegin
+
+			right 0 moveto
+			right top lineto
+			
+			1 0 middle glifc
+			center middle moveto
+			
+			0 0 lineto
+			
+		end
+	}
+>> def

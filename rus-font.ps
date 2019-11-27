@@ -3,78 +3,12 @@
 
 (font-matrix-eskd.ps) run
 (rus-encoding.ps) run
+(eskd-font.ps) stealfile
 
 <<
-	%Required for all fonts
-	/FontType 3
 	/FontMatrix eskd-b-oblique
 	
-	%Required for base fonts
-	
 	/Encoding rus-translit-encoding %Кодовая страница.
-	
-	/FontBBox [0 0 0 0] %Потом заменить реальными значениями
-	
-	%Запускается для отрисовки символа
-	%[this, charName]
-	/BuildGlyph {
-		
-		%[this, charName]
-		1 index 
-		%[this, charName, this]
-		begin
-			%[this, charName]
-			CharProcs
-			%[this, charName, this.CharProcs]
-			exch % Get CharProcs dictionary
-			
-			%[this, this.CharProcs, charName]
-			2 copy known not % See if charname is known
-			{pop /.notdef}
-			if
-		
-			%[this, this.CharProcs, charName]
-			dup /.notdef eq
-			{
-				pop pop pop
-				%/.notdef ==
-			}
-			{
-				%[this, this.CharProcs, charName]
-				get
-				%[this, this.CharProcs.charName]
-				
-				%[this, this.CharProcs.charName]
-				beforeGliph
-				exec % Execute BuildGlyph procedure with [this]
-				afterGliph
-				
-				%[this]
-				pop
-			}
-			ifelse
-		end
-		
-	}
-	
-	/beforeGliph{
-	}
-	/afterGliph{
-		stroke
-		pop
-	}
-	
-	%Устаревшая схема, для совместимости
-	%[this, charCode]
-	/BuildChar {
-		1 index /Encoding get
-		%[this, charCode, this.Encoding]
-		exch get
-		%[this, charName]
-		1 index /BuildGlyph get 
-		%[this, charName, this.BuildGlyph]
-		exec
-	} bind
 	
 	%========== Специфичные члены для ЕСКД Б
 	/h 10 %высота прописных букв
@@ -83,92 +17,6 @@
 	/b 17 %интерлиньяж
 	/e 6  %расстояние между словами
 	/d 1  % толщина линии
-	
-	%[g]
-	/setconfig {
-		/g exch def %определяем g
-		/right g 1 sub def %легаси
-		/center right 2 div def
-		
-		g a add  
-		0
-		% Width
-			
-		-2 -3  
-		3 index  
-		h 2 add
-		% Bounding box
-		setcachedevice
-
-		d setlinewidth
-		
-		0.5 0.5 translate
-		
-		2 setlinecap			
-		
-	}
-	%[]
-	
-	%[g]
-	/dobegin {
-		0 dict dup 
-		%[g, -dict-config-, -dict-config-]
-		3 1 roll 
-		%[-dict-config-, g, -dict-config-]
-		begin
-			%[-dict-, g]
-			setconfig
-	}
-	%[-dict-config-]
-	
-	/uppertop {
-		/top h 1 sub def
-	}
-	
-	/lowertop {
-		/top c 1 sub def
-	}
-	
-	/middlefloor {
-		/middle top 2 div floor def
-	}
-	
-	/middleceil {
-		/middle top 2 div ceiling def
-	}
-	
-	%[g]
-	/lowerbegin {
-		dobegin
-			lowertop
-			middleceil
-	}	
-	%[-dict-config-]
-	
-	%[g]
-	/upperfloorbegin {
-		dobegin
-			uppertop
-			middleceil
-	}
-	%[-dict-config-]
-
-	%[g]
-	/upperceilbegin {
-		dobegin
-			uppertop
-			middlefloor
-	}
-	%[-dict-config-]
-	
-	%[-dict-config-]
-	/overbegin {
-		dup
-		begin
-			0 top 1 add translate
-			/top 1 def
-	}
-	%[-dict-config-]
 	
 	/subglyph <<
 		/uml {
@@ -990,8 +838,11 @@
 		}
 	>>
 	
->>  dup begin
-	(font-tools.ps) run
-end
+>> 
+eskd-font
+<<>>
+copy
+copy
+
 
 /rus-eskd-font exch definefont pop

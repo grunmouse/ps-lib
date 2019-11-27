@@ -2,23 +2,32 @@
 
 (./)(unicode.ps) steal
 
+(eskd-font.ps) stealfile
+(eskd-b-gliph.ps) stealfile
+
+(font-lib.ps) stealfile
+
 %unicode length ==
 
-[
-	/DigitZero 
-	/DigitOne
-	/DigitTwo
-	/DigitThree
-	/DigitFour
-	/DigitFive
-	/DigitSix
-	/DigitSeven
-	/DigitEight
-	/DigitNine
-]
-invert
-==dict
-%unicode-encoding
+
+/str (xПодъём с затонувшего эсминца легкобьющейся древнегреческой амфоры сопряжён с техническими трудностями) def
+/points str utf8points def
 
 
-(Подъём с затонувшего эсминца легкобьющейся древнегреческой амфоры сопряжён с техническими трудностями.) utf8points unique length ==
+
+(form-a4.ps) run
+
+in2mm
+
+
+/eskd-b-font findfont
+3 scalefont
+setfont
+
+
+/conv-str points fencode def
+
+
+30 250 moveto 
+str utf8points fshow
+

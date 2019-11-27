@@ -1,0 +1,159 @@
+(font-base.ps) stealfile
+(eskd-b-gliph.ps) stealfile
+
+%Матрицы прямого и наклонного шрифтов ЕСКД Б
+/eskd-b-orto [0.1 0 0 0.1 0 0] def
+/eskd-b-oblique [0.1 0 0.02679 0.1035 0 0] def
+
+%Словарь-шаблон для чертёжных шрифтов
+/eskd-font-base
+<<
+	/afterGliph{
+		stroke
+		pop
+	}
+	
+	%[g]
+	/setconfig {
+		/g exch def %определяем g
+		/right g 1 sub def %легаси
+		/center right 2 div def
+		
+		g a add  
+		0
+		% Width
+			
+		-2 -3  
+		3 index  
+		h 2 add
+		% Bounding box
+		setcachedevice
+
+		d setlinewidth
+		
+		0.5 0.5 translate
+		
+		2 setlinecap			
+		
+	}
+	%[]
+	
+	%[g]
+	/dobegin {
+		0 dict dup 
+		%[g, -dict-config-, -dict-config-]
+		3 1 roll 
+		%[-dict-config-, g, -dict-config-]
+		begin
+			%[-dict-, g]
+			setconfig
+	}
+	%[-dict-config-]
+	
+	/uppertop {
+		/top h 1 sub def
+	}
+	
+	/lowertop {
+		/top c 1 sub def
+	}
+	
+	/middlefloor {
+		/middle top 2 div floor def
+	}
+	
+	/middleceil {
+		/middle top 2 div ceiling def
+	}
+	
+	%[g]
+	/lowerbegin {
+		dobegin
+			lowertop
+			middleceil
+	}	
+	%[-dict-config-]
+	
+	%[g]
+	/upperfloorbegin {
+		dobegin
+			uppertop
+			middleceil
+	}
+	%[-dict-config-]
+
+	%[g]
+	/upperceilbegin {
+		dobegin
+			uppertop
+			middlefloor
+	}
+	%[-dict-config-]
+	
+	%[-dict-config-]
+	/overbegin {
+		dup
+		begin
+			0 top 1 add translate
+			/top 1 def
+	}
+	%[-dict-config-]
+	
+	/subglyph <<
+		/uml {
+			1 setlinejoin 
+			0 setlinecap
+			0.5 top moveto
+			1 0 rlineto
+			1 0 rmoveto
+			1 0 rlineto
+		}
+		/breve {
+			0 setlinecap
+			1 top moveto
+			right 1 sub top lineto
+		}
+	>>
+
+>> 
+font3-base
+<< >> copy copy
+dup begin
+	(font-tools.ps) run
+end
+
+def
+
+
+%=============
+
+/eskd-b-font-base
+<<
+	
+	%========== Специфичные члены для ЕСКД Б
+	/h 10 %высота прописных букв
+	/c 7  %высота строчных букв
+	/a 2  %расстояние между буквами
+	/b 17 %интерлиньяж
+	/e 6  %расстояние между словами
+	/d 1  % толщина линии
+	
+	/CharProcs eskd-b-gliph
+	
+>>
+eskd-font-base
+<<>> copy copy
+def
+
+/eskd-b-font 
+	[
+		(АБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзиклмнопрстуфхцчшщъыьэюя ) utf8load
+	]
+	encoding-from-points
+	eskd-b-font-base
+	<<
+		/FontMatrix eskd-b-oblique
+		/FontName (ESKD B)
+	>>
+	copy copy
+definefont pop

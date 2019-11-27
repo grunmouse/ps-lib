@@ -1,5 +1,6 @@
 (unicode-dict.ps) stealfile
 (traverse.ps) stealfile
+(font-lib.ps) stealfile
 
 /unicode-name unicode invert def
 
@@ -40,31 +41,39 @@
 } def
 %[value, count]
 
+%Преобразовывает utf8-строку в кодовые точки и выгружает их в стек
+%Следует использовать для сборки массивов кодовых точек из нескольких строк
+%[str]
+/utf8load {
+	{
+		%[prev, byte]
+		utf8byte
+		%[prev, value, count]
+		1 eq
+		{
+			%then
+			%[prev, value]
+			exch
+			6 bitshift
+			or
+			%[{prev|value}]
+		}
+		{
+			%else
+			%[prev, value]
+		}
+		ifelse
+	}
+	forall
+} def
+%[array]
+
 %Преобразовывает utf8-строку в массив кодовых точек utf
 %[str]
 /utf8points {
 	[
 		exch
-		{
-			%[prev, byte]
-			utf8byte
-			%[prev, value, count]
-			1 eq
-			{
-				%then
-				%[prev, value]
-				exch
-				6 bitshift
-				or
-				%[{prev|value}]
-			}
-			{
-				%else
-				%[prev, value]
-			}
-			ifelse
-		}
-		forall
+		utf8load
 	]
 } def
 %[array]
@@ -73,7 +82,7 @@
 % encoding - словарь, оторбражающий номер кодовой точки на значение байта однобайтовой кодировки
 %[codePoints, encoding]
 /utfToOneByte {
-	0 dict begin{
+	0 dict begin
 		/encoding exch def
 		/arr exch def
 		[
@@ -85,43 +94,97 @@
 			}
 			forall
 		]
-	}
+	end
 } def
 
-
-
-%Принимает на вход массив имён символов и словарь юникода
-%возвращает массив номеров юникодных точек
-%[arr]
-/unicode-encoding {
-	0 dict begin 
-		/source exch def
-		/len source length def
-		/arr len array def
-		/dic len dict def
+%[codePoints, encoding]
+/utfToStr {
+	0 dict begin
+		/encoding exch def
+		/arr exch def
+		/str arr length string def
 		
-		source
+		arr
 		{
-			%[proc, source, value, key]
 			exch
-			%[index, name]
-			unicode exch get
-			%[index, codepoint]
-			
-			2 copy
-			arr 3 1 roll put
-			
-			%[index, codepoint]
+			encoding exch 
 			intcvn
-			%[index, /codepoint]
+			safeGet
 			exch
-			dic 3 1 roll put
-			%[]
-			
-			%[proc, source]
 		}
-		forallpairs
-		
-		arr dic
+		str
+		mappairs
 	end
+} def
+
+%Добавляет в шрифт словарь кодовых точек для преобразования массивов в строки
+%[font]
+/utf-font {
+	dup
+	begin
+		/UEncoding
+			Encoding 
+			{
+				%[name, index]
+				exch
+				dup
+				/.notdef eq
+				{
+					pop pop
+					null null
+				}
+				{
+					unicode exch get
+					intcvn
+					%[index, codepoint]
+				}
+				ifelse
+			}
+			<<>>
+			mappairs
+		def
+	end
+} def
+%[font]
+
+%@param {array<int>} points - массив номеров кодовых точек
+%[points]
+/encoding-from-points {
+	%[code set]
+	0 dict begin
+		/points exch def
+		/point-set
+			[
+				0
+				points aload pop
+			]
+			unique shaker-sort 
+		def
+		<<
+			/Encoding 
+				point-set unicode-name map-with-dict 
+				create-encoding
+				merge-encoding
+		
+			/UEncoding point-set invert
+		>>
+	end
+} def
+
+/fencode {
+	currentfont	
+	/UEncoding 
+	
+	%2 copy known not
+	%{}if
+	get
+	utfToStr 
+} def
+
+/fshow {
+	fencode show
+} def
+
+/fstringwidth {
+	fencode stringwidth
 } def

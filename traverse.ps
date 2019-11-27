@@ -45,15 +45,23 @@
 		5 index 
 		exec %proc
 		%[proc, result, thisproc, source, newvalue, newkey]
-		4 index 
-		3 1 roll
-		exch
-		put
+		dup null eq 
+		{
+			pop pop
+		}
+		{
+			4 index 
+			3 1 roll
+			exch
+			put
+		}
+		ifelse
 	}
 	forallpairs
 	%[proc, result]
 	exch pop
 } def
+%[result]
 
 /==dict {
 	(<<) ==
@@ -63,6 +71,7 @@
 	(>>) ==
 } def
 
+%Берёт значение из словаря, если оно там есть, и кладёт в стек 0, если нет
 %[dict, key]
 /safeGet {
 	2 copy known not
@@ -130,6 +139,7 @@
 	end
 } def
 
+%Находит уникальные значения в массиве или строке
 %[{array|string}source]
 /unique {
 	{
@@ -141,4 +151,78 @@
 	mappairs
 	dict-values
 } def
+%[{array}]
 
+%[arr]
+/shaker-sort {
+	0 dict begin 
+		/arr exch def
+		/right arr length 2 sub def
+		/left 0 def
+		
+		%Сортирует пару чисел по переданному индексу
+		%[i]
+		/sort-pair{
+			/i exch def
+			/j i 1 add def
+
+			arr i get
+			arr j get
+			2 copy
+			ge
+			{
+				%[arr[i], att[j]]
+				arr i 3 -1 roll put
+				arr j 3 -1 roll put
+			}
+			{
+				pop pop
+			}
+			ifelse
+		} def
+		
+		{
+			left 1 right
+			{sort-pair}
+			for
+			/right right 1 sub def
+			
+			right -1 left
+			{sort-pair}
+			for
+			/left left 1 add def
+			
+			%Постусловие
+			left right 1 add le not
+			{exit}
+			if
+		}loop
+		arr
+	end
+} def
+%[arr]
+
+%Принимает массив ключей и словарь, возвращает массив значений словаря
+%[array, dict]
+/map-with-dict {
+	0 dict begin
+		/dic exch def
+		/arr exch def
+		/result arr length array def
+		arr
+		{
+			%[value, key]
+			exch anycvn
+			dic exch get
+			exch
+		}
+		result
+		mappairs
+	end
+} def
+
+%создаёт новый словарь, в который последовательно копируются сначала dict1, а потом dict2
+%[dict2, dict1]
+/dict-extend {
+	<<>> copy copy
+} def
