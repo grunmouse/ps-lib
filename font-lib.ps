@@ -1,3 +1,4 @@
+%Библиотека процедур, полезныъ при создании шрифтов
 
 % Создать пустой массив кодировки
 /create-encoding {
@@ -55,15 +56,3 @@
 	end
 } def
 %[into]
-
-/create-code-pair {
-	2 dict
-	dup
-	begin
-		/Encoding create-encoding def
-		/CharProcs <<
-			/.notdef {}
-		>> def
-	end
-} def
-

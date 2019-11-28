@@ -1,9 +1,6 @@
 %% Набор процедур, рисующих характерные, встречающиеся в шрифтах элементы
+(math.ps) stealfile
 
-	%% Сигнум числа
-	/sgn {
-		dup abs div
-	} def
 
 	%% @private
 	%% Процедура подготовик данных для рисования дуги квадранта
@@ -75,8 +72,8 @@
 	%% Конец крюка будет располагаться на абсциссе x и ординате r*sgny
 	%[x, r, sgny]
 	/xlinearc {
-		%%x0 = curx + sgn(x - curx)*(abs(x - curx) - r)
-		%x0 = x - sgn(x - curx)*r
+		%%x0 = curx + sign(x - curx)*(abs(x - curx) - r)
+		%x0 = x - sign(x - curx)*r
 		%y0 = cury
 		%x1 = x; y1 = cury
 		%x2 = x; y2 = cury + sgny*r
@@ -89,9 +86,9 @@
 		currentpoint	%[x, r, r*sgny, x, x, curx, cury]
 		5 1 roll		%[x, r, cury, r*sgny, x, x, curx]
 		sub				%[x, r, cury, r*sgny, x, x - curx]
-		sgn				%[x, r, cury, r*sgny, x, sgn(x - curx)]
-		4 index			%[x, r, cury, r*sgny, x, sgn(x - curx), r]
-		mul				%[x, r, cury, r*sgny, x, sgn(x - curx)*r]
+		sign				%[x, r, cury, r*sgny, x, sign(x - curx)]
+		4 index			%[x, r, cury, r*sgny, x, sign(x - curx), r]
+		mul				%[x, r, cury, r*sgny, x, sign(x - curx)*r]
 		sub				%[x, r, cury, r*sgny, x0]
 		2 index			%[x, r, cury, r*sgny, x0, cury]
 		lineto			%[x, r, cury, r*sgny]
@@ -110,7 +107,7 @@
 	%% Конец крюка будет располагаться по координатам {r*sgnx, y}
 	%[y, r, sgnx]
 	/ylinearc {
-		%y0 = y - sgn(y - cury)*r
+		%y0 = y - sign(y - cury)*r
 		%x0 = curx
 		%y1 = y; x1 = curx
 		%y2 = y; x2 = curx + sgnx*r
@@ -124,9 +121,9 @@
 		exch			%[y, r, r*sgnx, y, y, cury, curx]
 		7 1 roll		%[curx, y, r, r*sgnx, y, y, cury]
 		sub				%[curx, y, r, r*sgnx, y, y - curx]
-		sgn				%[curx, y, r, r*sgnx, y, sgn(y - cury)]
-		3 index			%[curx, y, r, r*sgnx, y, sgn(y - cury), r]
-		mul				%[curx, y, r, r*sgnx, y, sgn(y - cury)*r]
+		sign				%[curx, y, r, r*sgnx, y, sign(y - cury)]
+		3 index			%[curx, y, r, r*sgnx, y, sign(y - cury), r]
+		mul				%[curx, y, r, r*sgnx, y, sign(y - cury)*r]
 		sub				%[curx, y, r, r*sgnx, y0]
 		4 index exch	%[curx, y, r, r*sgnx, curx, y0]
 		%[curx, y0]
