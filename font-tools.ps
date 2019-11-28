@@ -1,7 +1,4 @@
 %% Набор процедур, рисующих характерные, встречающиеся в шрифтах элементы
-(math.ps) stealfile
-(2d.ps) stealfile
-
 	%% @private
 	%% Процедура подготовик данных для рисования дуги квадранта
 	%[r, sgndx, sgndy]
@@ -154,108 +151,156 @@
 		1 ylinearc
 	} def
 	
-	% Рисует прямоугольник со скруглёнными углами
-	% r - радиус скругления
-	% right, top - координаты верхнего правого угла
-	%[r, right, top]
-	/glifo {
-		%(o) ==
-		6 dict begin
-		
-			currentpoint	%[r, right, top, left, bottom]
-			/bottom exch def
-			/left exch def
-			/top exch def	%[right]
-			dup left add 2 div
-			/center exch def
-			/right exch def
-			/r exch def
-		
-			center bottom moveto
-			right r xlinearcup
-			top r ylinearcleft
-			left r xlinearcdown
-			bottom r ylinearcright
-			center bottom lineto
-		end
-	} def
-	
-	% Рисует букву C в виде швеллера со скруглёнными углами, начиная из верхнего правого конца
-	% r - радиус скругления
-	% left, bottom - координаты нижнего левого конца
-	%[r, left, bottom]
-	/glifc {
-		4 dict begin
-			currentpoint
-			pop
-			/right exch def
-			/bottom exch def
-			/left exch def
-			/r exch def
 
-			left r xlinearcdown
-			bottom r ylinearcright
-			right bottom lineto
+	
+	%Определяет и делает текущим словарь, содержащий координаты точек прямоугольника ABCD
+	%где A = currentpoint, C = cx, cy,
+	%B = ax, cy; D = cx, ay
+	%AB - вертикаль, AD - горизонталь
+	%[cx, cy]
+	/beginABCD {
+		0 dict begin
+			setABCD
+	} def
+	
+	/setABCD {
+		/C 2edef
+		/A currentpoint 2def
+		
+		A C 2swap-y
+		/D 2edef
+		/B 2edef
+	} def
+	
+	%Определяет в текущем словаре ABCD точки
+	%[x, y]
+	%BNC
+	%MQO
+	%APD
+	/setMNOPQ {
+		/Q 2edef
+		A Q 2swap-y
+		/P 2edef
+		/M 2edef
+		Q C 2swap-y
+		/O 2edef
+		/N 2edef
+	} def
+	
+	%рисует две линии буквой X, причём одна из них - из текущей точки в переданную
+	%[x2, y2]
+	/gliphX {
+		beginABCD
+			C lineto
+			B moveto
+			D lineto
+			C moveto
 		end
 	} def
 	
-	% Рисует отражённую вправо букву C в виде швеллера со скруглёнными углами, начиная из нижнего левого конца
-	% r - радиус скругления
-	% right, top - координаты верхнего правого конца
-	%[r, right, top]
-	/glifrc {
-		4 dict begin
-			currentpoint
-			pop
-			/left exch def
-			/top exch def
-			/right exch def
+	%рисует три линии буквой Z таким образом, чтобы придти из текущей точки в переданную
+	%[x2, y2]
+	/gliphZ {
+		beginABCD
+			D lineto
+			B lineto
+			C lineto
+		end
+	} def
+	
+	%рисует три линии буквой N таким образом, чтобы придти из текущей точки в переданную
+	%[x2, y2]
+	/gliphN {
+		beginABCD
+			B lineto
+			D lineto
+			C lineto
+		end
+	} def
+	
+	%[x2, y2, middle]
+	/gliphH {
+		0 dict begin
+			3 1 roll
+			setABCD
+			0 exch setMNOPQ
+			
+			A moveto B lineto
+			M moveto O lineto
+			D moveto C lineto
+		end
+	} def
+	
+	%[r, x2, y2]
+	%Рисует линию A-D-C-B скругляя углы D и C радиусом r
+	/gliphC {
+		beginABCD
 			/r exch def
-			right r xlinearcup
-			top r ylinearcleft
-			left top lineto
-		end
-	} def
-	
-	%[right, top]
-	/glifx {
-		4 dict begin
-			currentpoint
-			/bottom exch def
-			/left exch def
-			2 copy
-			/top exch def
-			/right exch def
+			r [D C B] many-arct
 			lineto
-			0 left moveto
-			right 0 lineto
+			% D C r arct
+			% C B r arct
+			% B lineto
+		end
+	} def
+
+	%[r, x2, y2]
+	%Рисует линию A-B-C-D скругляя углы D и C радиусом r
+	/gliphU {
+		beginABCD
+			/r exch def
+			B C r arct
+			C D r arct
+			D lineto
+		end
+	} def
+
+	%Рисует прямоугольник со скруглёнными углами, начиная и заканчивая в середине стороны AB
+	%[r, x2, y2]
+	/gliphO {
+		beginABCD
+			/r exch def
+			/M B A 2add 2 2div 2def
+			M moveto
+			r [B C D A M] many-arct
+			lineto
 		end
 	} def
 	
-	/glifz {
-		4 dict begin
-			currentpoint
-			/top exch def
-			/left exch def
-			/bottom exch def
-			/right exch def
-			
-			right top lineto
-			left bottom lineto
-			right bottom lineto
+	/arcYX {
+		0 dict begin
+			/r exch def
+			setABCD
+			B C r arct
+			C lineto
 		end
 	} def
 	
-	/glifn {
-		4 dict begin
-			currentpoint
-			/top exch def
-			/left exch def
-			/bottom exch def
-			/right exch def
-			
-			right top lineto
-			left bottom lineto
-			right bottom lineto
+	/arcXY {
+		0 dict begin
+			/r exch def
+			setABCD
+			D C r arct
+			C lineto
 		end
 	} def
+	
+	%Рисует скруглённую ломаную. После завершения работы в стеке xn, yn
+	%[r, [x1, y1, ... xn, yn]]
+	/many-arct {
+		0 dict begin
+			/points exch def
+			/r exch def
+			/n points length 2 div ceiling cvi def
+			points aload pop
+			n -1 2
+			{
+				/i exch def
+				i -1 2roll %крутим первую точку наружу
+				i 1 sub 2index %дублируем на вершину стека вторую точку (теперь она первая)
+				r arct % рисуем, снимаются обе точки, значит массив стал на одну точку короче
+			}
+			for
+		end
+	} def
+	%[xn, yn]

@@ -16,7 +16,7 @@
 		6 upperfloorbegin
 			0 top moveto
 			0 0 lineto
-			1 right middle glifrc
+			1 right middle gliphC
 			0 top moveto
 			right 1 sub 0 rlineto
 			
@@ -26,11 +26,12 @@
 		6 upperfloorbegin
 			0 top moveto
 			0 0 lineto
-			1 right middle glifrc
+			1 right middle gliphC
 			0 top moveto
-			right 1 sub 1 xlinearcdown
-			middle 2 ylinearcleft
-			
+			right 1 sub middle beginABCD
+				D C 1 arct
+				C B 2 arct
+			end
 		end
 	}
 	/CyrillicCapitalLetterGhe {
@@ -38,7 +39,6 @@
 			0 0 moveto
 			0 top lineto
 			right 1 add top lineto
-			
 		end
 	}
 	/CyrillicCapitalLetterDe {
@@ -53,7 +53,6 @@
 			right top  lineto
 			0 setlinejoin 
 			right 0 lineto
-			
 		end
 	}
 	/CyrillicCapitalLetterIe {
@@ -64,7 +63,6 @@
 			right top lineto
 			0 middle moveto
 			3 0 rlineto
-			
 		end
 	}
 	/CyrillicCapitalLetterIo {
@@ -99,26 +97,26 @@
 	/CyrillicCapitalLetterZe {
 		5 upperfloorbegin
 			1 setlinecap
-			0 1 moveto
-			1 1 -1 arcty
-			right 2 xlinearcup
-			middle 2 ylinearcleft
-			-1 0 rlineto
-			1 0 rmoveto
-			2 1 1 arctx
-			top 1 ylinearcleft
-			0 1 xlinearcdown
-			
+			0 0 moveto
+			right top beginABCD
+				center middle setMNOPQ
+				0 1 moveto
+				A D 1 arct
+				D O 2 arct
+				O Q 2 arct
+				-1 0 rlineto
+				1 0 rmoveto
+				O C 2 arct
+				C B 1 arct
+				B A 1 arct
+			end
 		end
 	}
 	/CyrillicCapitalLetterI {
 		6 upperfloorbegin
 			1 setlinejoin 
 			0 top moveto
-			0 0 lineto
-			right top lineto
-			right 0 lineto
-			
+			right 0 gliphN
 		end
 	}
 	/CyrillicCapitalLetterShortI {
@@ -163,20 +161,14 @@
 	/CyrillicCapitalLetterEn {
 		6 upperfloorbegin
 			0 0 moveto
-			0 top rlineto
-			
-			right 0 moveto
-			0 top rlineto
-			
-			0 middle moveto
-			right 0 rlineto
+			right top middle gliphH
 			
 		end
 	}
 	/CyrillicCapitalLetterO {
 		6 upperfloorbegin
 			0 0 moveto
-			2 right top glifo
+			2 right top gliphO
 			
 		end
 	}
@@ -194,14 +186,14 @@
 			0 0 moveto
 			0 top lineto
 			0 middle moveto
-			1 right top glifrc
+			1 right top gliphC
 			
 		end
 	}
 	/CyrillicCapitalLetterEs {
 		6 upperceilbegin
 			right top moveto
-			1 0 0 glifc
+			2 0 0 gliphC
 			
 		end
 	}
@@ -217,12 +209,9 @@
 	/CyrillicCapitalLetterU {
 		6 upperceilbegin
 			0 top moveto
-			middle 1 ylinearcright
-			right middle lineto
+			right middle 1 arcYX
 			right top moveto
-			0 2 ylinearcleft
-			1 0 lineto
-			
+			1 0 2 arcYX
 		end
 	}
 	/CyrillicCapitalLetterEf {
@@ -234,17 +223,14 @@
 				2 
 				right 
 				top 2 sub 
-			glifo
+			gliphO
 			
 		end
 	}
 	/CyrillicCapitalLetterHa {
 		7 upperceilbegin
 			0 0 moveto
-			right top lineto
-			0 top moveto
-			right 0 lineto
-			
+			right top gliphX
 		end
 	}
 	/CyrillicCapitalLetterTse {
@@ -261,8 +247,7 @@
 	/CyrillicCapitalLetterChe {
 		6 upperceilbegin
 			0 top moveto
-			middle 1 ylinearcright
-			right middle lineto
+			right middle 1 arcYX
 			right top moveto
 			right 0 lineto
 			
@@ -295,7 +280,7 @@
 	/CyrillicCapitalLetterHardSign {
 		6 upperfloorbegin
 			0 0 moveto
-			1 right middle glifrc
+			1 right middle gliphC
 			0 0 moveto
 			0 top lineto
 			-2 0 rlineto
@@ -305,7 +290,7 @@
 	/CyrillicCapitalLetterYeru {
 		7 upperfloorbegin
 			0 0 moveto
-			1 4 middle glifrc
+			1 4 middle gliphC
 			0 0 moveto
 			0 top lineto
 			right top moveto
@@ -316,7 +301,7 @@
 	/CyrillicCapitalLetterSoftSign {
 		6 upperfloorbegin
 			0 0 moveto
-			1 right middle glifrc
+			1 right middle gliphC
 			0 0 moveto
 			0 top lineto
 		end
@@ -324,7 +309,7 @@
 	/CyrillicCapitalLetterE {
 		6 upperfloorbegin
 			0 0 moveto
-			1 right top glifrc
+			1 right top gliphC
 			right middle moveto
 			center middle lineto
 			
@@ -335,8 +320,7 @@
 			0 0 moveto 0 top lineto
 			0 middle moveto	2 0 rlineto
 			2 0 moveto
-			2 right top glifo
-			
+			2 right top gliphO
 		end
 	}
 	/CyrillicCapitalLetterYa {
@@ -345,7 +329,7 @@
 			right 0 moveto
 			right top lineto
 			
-			1 0 middle glifc
+			1 0 middle gliphC
 			center middle moveto
 			
 			0 0 lineto
@@ -371,7 +355,7 @@
 			neg 3 rlineto
 			right 0 rlineto
 			0 0 moveto
-			1 right top glifo
+			1 right top gliphO
 			
 		end
 	}
@@ -525,7 +509,7 @@
 	/CyrillicSmallLetterO {
 		5 lowerbegin
 			0 0 moveto
-			1 right top glifo
+			1 right top gliphO
 			
 		end
 	}
@@ -533,7 +517,7 @@
 		5 lowerbegin
 			0 0 moveto
 			0 top lineto
-			right 1 xlinearcdown
+			right top right 0 1 arct
 			right 0 lineto
 			
 		end
@@ -543,14 +527,14 @@
 			0 top moveto
 			0 -3 lineto
 			0 0 moveto
-			1 right top glifrc
+			1 right top gliphC
 			
 		end
 	}
 	/CyrillicSmallLetterEs {
 		4 lowerbegin
 			right top moveto
-			1 0 0 glifc
+			1 0 0 gliphC
 			
 		end
 	}
@@ -579,7 +563,7 @@
 	/CyrillicSmallLetterEf {
 		7 lowerbegin
 			0 0 moveto
-			1 right top glifo
+			1 right top gliphO
 			center top moveto 0 2 rmoveto 
 			center -3 lineto
 			
@@ -588,10 +572,7 @@
 	/CyrillicSmallLetterHa {
 		5 lowerbegin
 			0 0 moveto
-			right top lineto
-			right 0 moveto
-			0 top lineto
-			
+			right top gliphX
 		end
 	}
 	/CyrillicSmallLetterTse {
@@ -642,7 +623,7 @@
 	/CyrillicSmallLetterHardSign {
 		5 lowerbegin
 			0 0 moveto
-			1 right middle glifrc
+			1 right middle gliphC
 			0 0 moveto
 			0 top lineto
 			-1 0 rlineto
@@ -652,7 +633,7 @@
 	/CyrillicSmallLetterYeru {
 		6 lowerbegin
 			0 0 moveto
-			1 3 middle glifrc
+			1 3 middle gliphC
 			0 0 moveto
 			0 top lineto
 			right 0 moveto
@@ -663,7 +644,7 @@
 	/CyrillicSmallLetterSoftSign {
 		5 lowerbegin
 			0 0 moveto
-			1 right middle glifrc
+			1 right middle gliphC
 			0 0 moveto
 			0 top lineto
 			
@@ -672,7 +653,7 @@
 	/CyrillicSmallLetterE {
 		5 lowerbegin
 			0 0 moveto
-			1 right top glifrc
+			1 right top gliphC
 			right middle moveto
 			-2 0 rlineto
 			
@@ -683,7 +664,7 @@
 			0 0 moveto 0 top lineto
 			0 middle moveto 2 0 rlineto
 			2 0 moveto
-			1 right top glifo
+			1 right top gliphO
 			
 		end
 	}
@@ -693,7 +674,7 @@
 			right 0 moveto
 			right top lineto
 			
-			1 0 middle glifc
+			1 0 middle gliphC
 			center middle moveto
 			
 			0 0 lineto

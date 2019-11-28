@@ -2,7 +2,7 @@
 
 /2== {
 	2 array astore
-	== ==
+	==
 } def
 
 %Дублирует вектор
@@ -123,6 +123,14 @@
 	2sq sqrt
 } def
 
+%Находит середину отрезка
+%[ax, ay, bx, by]
+/2center {
+	2add 2 2div
+} def
+%[cx, cy]
+
+
 %орт вектора
 /2ort {
 	2dup
@@ -157,6 +165,16 @@
 		2sub
 	end
 } def
+
+%Меняет местами координаты y двух векторов
+%[ax, ay, bx, by]
+/2swap-y {
+	exch
+	%[ax, ay, by, bx]
+	3 2 roll
+} def
+%[ax, by, bx, ay]
+
 
 %[x1, y1, x2, y2, R]
 /myarct {
