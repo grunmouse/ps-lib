@@ -1,5 +1,6 @@
 (font-base.ps) stealfile
 (eskd-b-gliph.ps) stealfile
+(unicode.ps) stealfile
 
 %Матрицы прямого и наклонного шрифтов ЕСКД Б
 /eskd-b-orto [0.1 0 0 0.1 0 0] def
@@ -145,15 +146,29 @@ eskd-font-base
 <<>> copy copy
 def
 
-/eskd-b-font 
+/eskd-utf-encoding-dict 
 	[
-		(АБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзиклмнопрстуфхцчшщъыьэюя ) utf8load
+		(0123456789АБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзиклмнопрстуфхцчшщъыьэюя ) utf8load
 	]
 	encoding-from-points
+def
+
+/eskd-b-font 
+	eskd-utf-encoding-dict
 	eskd-b-font-base
 	<<
 		/FontMatrix eskd-b-oblique
 		/FontName (ESKD B)
+	>>
+	copy copy
+definefont pop
+
+/eskd-b-orto-font 
+	eskd-utf-encoding-dict
+	eskd-b-font-base
+	<<
+		/FontMatrix eskd-b-orto
+		/FontName (ESKD B orto)
 	>>
 	copy copy
 definefont pop
