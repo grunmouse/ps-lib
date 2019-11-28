@@ -1,11 +1,14 @@
+%Прототип для шрифтов типа 3
+%Содержит реализации всех общих для шрифтов типа 3 процедур
+%Для создания на его базе шрифтов, необходимо добавить
+% /FontMatrix /Encoding /CharProcs
+
 /font3-base
 <<
 	/FontType 3
-	%/FontMatrix eskd-b-oblique
 	
 	%Required for base fonts
 	
-	%/Encoding rus-translit-encoding %Кодовая страница.
 	
 	/FontBBox [0 0 0 0] %Потом заменить реальными значениями
 	
@@ -17,6 +20,7 @@
 		1 index 
 		%[this, charName, this]
 		begin
+			%/myvalue a def
 			%[this, charName]
 			CharProcs
 			%[this, charName, this.CharProcs]
@@ -36,12 +40,15 @@
 				%/.notdef ==
 			}
 			{
-				%dup /curcharname 4 1 roll
+				%[this, this.CharProcs, charName]
+
+				%dup ==
+				dup 4 1 roll
 				%[charName, this, this.CharProcs, charName]
 				get
-				%[this, this.CharProcs.charName]
+				%[charName, this, this.CharProcs.charName]
 				
-				%[this, this.CharProcs.charName]
+				%[charName, this, this.CharProcs.charName]
 				beforeGliph
 				exec % Execute BuildGlyph procedure with [this]
 				afterGliph
@@ -49,10 +56,10 @@
 				%[this]
 				currentdict eq not
 				{
-					%==
+					==
 				}
 				{
-					%pop
+					pop
 				}
 				ifelse
 				
