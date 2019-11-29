@@ -245,7 +245,7 @@
 	} def
 
 	%[r, x2, y2]
-	%Рисует линию A-B-C-D скругляя углы D и C радиусом r
+	%Рисует линию A-B-C-D скругляя углы B и C радиусом r
 	/gliphU {
 		beginABCD
 			/r exch def
@@ -267,6 +267,18 @@
 		end
 	} def
 	
+	%Рисует прямоугольник со скруглёнными углами B C D, но нескруглённым A
+	%[r, x2, y2]
+	/gliphOa {
+		beginABCD
+			/r exch def
+			r [B C D A] many-arct
+			lineto
+		end
+	} def
+	
+	%рисует скруглённый прямой угол, начиная по вертикали
+	%[x2, y2, r]
 	/arcYX {
 		0 dict begin
 			/r exch def
@@ -276,6 +288,8 @@
 		end
 	} def
 	
+	%рисует скруглённый прямой угол, начиная по горизонтали
+	%[x2, y2, r]
 	/arcXY {
 		0 dict begin
 			/r exch def

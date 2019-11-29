@@ -10,6 +10,10 @@
 	2 copy
 } def
 
+/2pop{
+	pop pop
+} def
+
 %Меняет местами два вектора
 /2exch{
 	4 2 roll
@@ -175,45 +179,56 @@
 } def
 %[ax, by, bx, ay]
 
+%[x1, y1, x2, y2]
+/2lineYX {
+	1 2index
+	2sub
+	%[x1, y1, dx, dy]
+	exch div
+	%[x1, y1, k]
+	[ 4 1 roll
+		%[mark, x1, y1, k]
+		exch
+		%[mark, x1, k, y1]
+		/sub cvx 3 1 roll
+		%[mark x1 (sub) k y1]
+		/mul cvx 2 1 roll
+		%[mark x1 (sub) k (mul) y1]
+		/add cvx
+		%[mark x1 (sub) k (mul) y1 (add)]
+	]
+	cvx
+} def
 
-%[x1, y1, x2, y2, R]
-/myarct {
+%находит наибольший доступный радиус скругления для arct
+%[x1, y1, x2, y2]
+/max-arct {
 	0 dict begin
-		/R exch def
 		/C 2edef
 		/B 2edef
 		/A currentpoint 2def
+		/a A B 2sub 2def
+		/c C B 2sub 2def
+		a 2hypot
+		c 2hypot
+		2 copy 2 copy
+		%[a, c, a, c, a, c]
+		gt %a>c
+		{
+			exch
+		}
+		if
+		pop
+		%[a, c, S]
+		/S exch def
+		mul
+		/ac exch def
 		
-		/BA A B 2sub 2def
-		/BC C B 2sub 2def
+		/sinT a c 2times abs ac div def
+		/cosT a c 2cdot ac div def
 		
-		BC BA 2ortogonal 2ort
-		BA BC 2ortogonal 2ort
-		2add
-		R 2mul
-		/BD 2edef
-		/BM BD BA 2proj 2def
-		/BN BD BC 2proj 2def
+		/tgt 1 cosT sub sinT div def
 		
-		/M B BM 2add 2def
-		/N B BN 2add 2def
-		
-		M moveto
-		B N R arct
+		S tgt mul
 	end
 } def
-
-% newpath
-	% 0 0 moveto
-	% 0 200 
-	% 200 200
-	% 100 arct
-% stroke
-
-% 50 0 translate
-% newpath
-	% 0 0 moveto
-	% 0 200 
-	% 200 200
-	% 100 myarct
-% stroke

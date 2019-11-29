@@ -16,22 +16,29 @@
 		}
 		/DigitTwo {
 			5 upperceilbegin
-				right 0 moveto
-				0 0 lineto
-				right top 2 sub lineto
-				2 -1 1 arcty
-				0 2 xlinearcdown
+				0 0 moveto
+				right top beginABCD
+					0 top 2 sub setMNOPQ
+					D moveto
+					A lineto
+					O lineto
+					C B 2 arct
+					B M 2 arct 
+				end
 			end
 		}	
 		/DigitThree {
 			5 upperfloorbegin
 				0 0 moveto
-				right 2 xlinearcup
-				middle 2 ylinearcleft
-				1 middle moveto
-				right 1.5 xlinearcup
-				top 1.5 ylinearcleft
-				0 top lineto
+				right top beginABCD
+					1 middle setMNOPQ
+					D O 2 arct
+					O Q 2 arct
+					Q moveto
+					O C 1.5 arct
+					C B 1.5 arct
+					B lineto
+				end
 			end
 		}
 		/DigitFour {
@@ -46,21 +53,21 @@
 		/DigitFive {
 			5 upperfloorbegin
 				0 0 moveto
-				right 2 xlinearcup
-				middle 2 ylinearcleft
-				0 middle lineto
+				2 right middle gliphC
 				0 top lineto
 				right top lineto
 			end
 		}
 		/DigitSix {
 			5 upperfloorbegin
-				right 1 sub top moveto
-				0 3 xlinearcdown
-				0 1 ylinearcright
-				right 1 xlinearcup
-				middle 1 ylinearcleft
-				0 middle lineto
+				right top moveto
+				0 0 beginABCD
+					center middle setMNOPQ
+					-1 0 rmoveto
+					D C 3 arct
+					1 [C B M O] many-arct
+					lineto
+				end
 			end
 		}
 		/DigitSeven {
@@ -73,25 +80,27 @@
 		}
 		/DigitEight {
 			5 upperfloorbegin
-				center middle moveto
-				right 2 xlinearcup
-				top 2 ylinearcleft
-				0 2 xlinearcdown
-				middle 2 ylinearcright
-				right 2 xlinearcdown
-				0 1.5 ylinearcleft
-				0 1.5 xlinearcup
-				middle 2 ylinearcright
+				0 0 moveto
+				right top beginABCD
+					center middle setMNOPQ
+					Q moveto
+					2 [O C B M O D] many-arct
+					2pop
+					1.5 [D A M] many-arct
+					Q 2 arct
+				end
 			end
 		}	
 		/DigitNine {
 			5 upperceilbegin
-				1 0 moveto
-				right 3 xlinearcup
-				top 1 ylinearcleft
-				0 1 xlinearcdown
-				middle 1 ylinearcright
-				right middle lineto
+				0 0 moveto
+				right top beginABCD
+					center middle setMNOPQ
+					1 0 rmoveto
+					D C 3 arct
+					1 [C B M O] many-arct
+					lineto
+				end
 			end
 		}
 
