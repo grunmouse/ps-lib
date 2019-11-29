@@ -1,38 +1,35 @@
 %Латинские глифы для ЕСКД Б
 /eskd-b-latin <<
 	/LatinCapitalLetterA {
-		CharProcs /CyrillicCapitalLetterA get exec
+		CyrillicCapitalLetterA
 	}
 	/LatinCapitalLetterB {
-		CharProcs /CyrillicCapitalLetterVe get exec
+		CyrillicCapitalLetterVe
 	}
 	/LatinCapitalLetterC {
-		CharProcs /CyrillicCapitalLetterEs get exec
+		CyrillicCapitalLetterEs
 	}
 	/LatinCapitalLetterD {
-		6 dobegin
-			uppertop
-			0 0 moveto
-			0 top lineto
-			1.5 right 0 gliphC
-		end
+		6 setconfig 
+		uppertop
+		A moveto
+		B lineto
+		1.5 D gliphC
+		
 	}
 	/LatinCapitalLetterE {
-		CharProcs /CyrillicCapitalLetterIe get exec
+		CyrillicCapitalLetterIe
 	}
 	/LatinCapitalLetterF {
-		5 dobegin
-			uppertop
-			middleceil
-			0 0 moveto
-			right top beginABCD
-				0 middle setMNOPQ
-				B lineto
-				C lineto
-				M moveto
-				O lineto
-			end
-		end
+		5 setconfig 
+		uppertop
+		middleceil
+		A moveto
+		B lineto
+		C lineto
+		M moveto
+		O lineto
+		
 	}
 	% /LatinCapitalLetterG {}
 	% /LatinCapitalLetterH {}
@@ -52,11 +49,11 @@
 	% /LatinCapitalLetterV {}
 	% /LatinCapitalLetterW {}
 	/LatinCapitalLetterX {
-		8 dobegin
+		8 setconfig 
 			uppertop
 			0 0 moveto
 			right top gliphX
-		end
+		
 	}
 	% /LatinCapitalLetterY {}
 	% /LatinCapitalLetterZ {}

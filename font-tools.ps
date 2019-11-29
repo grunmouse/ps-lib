@@ -9,13 +9,14 @@
 	%[cx, cy]
 	/beginABCD {
 		0 dict begin
+			currentpoint 2exch
 			setABCD
 	} def
 	
+	%[Ax, Ay, Cx, Cy]
 	/setABCD {
 		/C 2edef
-		/A currentpoint 2def
-		
+		/A 2edef
 		A C 2swap-y
 		/D 2edef
 		/B 2edef
@@ -71,6 +72,7 @@
 	/gliphH {
 		0 dict begin
 			3 1 roll
+			currentpoint 2exch
 			setABCD
 			0 exch setMNOPQ
 			
@@ -87,9 +89,6 @@
 			/r exch def
 			r [D C B] many-arct
 			lineto
-			% D C r arct
-			% C B r arct
-			% B lineto
 		end
 	} def
 
@@ -131,6 +130,7 @@
 	/arcYX {
 		0 dict begin
 			/r exch def
+			currentpoint 2exch
 			setABCD
 			B C r arct
 			C lineto
@@ -142,6 +142,7 @@
 	/arcXY {
 		0 dict begin
 			/r exch def
+			currentpoint 2exch
 			setABCD
 			D C r arct
 			C lineto

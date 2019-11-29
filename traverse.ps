@@ -226,3 +226,19 @@
 /dict-extend {
 	<<>> copy copy
 } def
+
+%@param {array<dict>} arr - массив словарей, которые нужно сложить
+%[arr]
+/many-dict-copy {
+	0 dict begin
+		/arr exch def
+		/result <<>> def
+		
+		arr
+		{
+			result copy pop
+		}
+		forall
+		result
+	end
+} def

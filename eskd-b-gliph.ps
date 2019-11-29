@@ -1,30 +1,24 @@
 %Словарь всех определённых глифов ЕСКД Б
-
+{(traverse.ps) stealfile} /many-dict-copy ifnotkey
 (eskd-b-cyr.ps) stealfile
 (eskd-b-digit.ps) stealfile
 (eskd-b-lat.ps) stealfile
 
 /eskd-b-gliph
+	[
+		eskd-b-cyrillic
+		eskd-b-digit
+		eskd-b-latin
+		<<
+			/.notdef {}
+			/Null {
+				0 setconfig
+			}
+			/Space {
+				e setconfig
+			}
+		>>
+	]
+	many-dict-copy
 
-	eskd-b-cyrillic
-	eskd-b-digit
-	eskd-b-latin
-	
-	<<
-		/.notdef {}
-		/Null {
-			0
-			dobegin
-			end
-		}
-		/Space {
-			e
-			dobegin
-			end
-		}
-	>>
-	copy
-	copy
-	copy
-	
 def

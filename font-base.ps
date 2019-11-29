@@ -20,7 +20,6 @@
 		1 index 
 		%[this, charName, this]
 		begin
-			%/myvalue a def
 			%[this, charName]
 			CharProcs
 			%[this, charName, this.CharProcs]
@@ -37,21 +36,26 @@
 			dup /.notdef eq
 			{
 				pop pop pop
-				%/.notdef ==
 			}
 			{
 				%[this, this.CharProcs, charName]
 
 				%dup ==
 				dup 4 1 roll
-				%[charName, this, this.CharProcs, charName]
+				%[this, this.CharProcs, charName]
 				get
-				%[charName, this, this.CharProcs.charName]
+				%[this, this.CharProcs.charName]
 				
-				%[charName, this, this.CharProcs.charName]
+				CharProcs begin
+				0 dict begin %Объявляем словарь для внутренних нужд глифа
+				
+				%[this, this.CharProcs.charName]
 				beforeGliph
 				exec % Execute BuildGlyph procedure with [this]
 				afterGliph
+				
+				end
+				end
 				
 				%[this]
 				currentdict eq not

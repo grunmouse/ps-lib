@@ -4,6 +4,7 @@
 
 (math.ps) stealfile
 (2d.ps) stealfile
+{(traverse.ps) stealfile} /many-dict-copy ifnotkey
 
 %Матрицы прямого и наклонного шрифтов ЕСКД Б
 /eskd-b-orto [0.1 0 0 0.1 0 0] def
@@ -14,7 +15,6 @@
 <<
 	/afterGliph{
 		stroke
-		pop
 	}
 	
 	%[g]
@@ -42,80 +42,48 @@
 	}
 	%[]
 	
-	%[g]
-	/dobegin {
-		0 dict dup 
-		%[g, -dict-config-, -dict-config-]
-		3 1 roll 
-		%[-dict-config-, g, -dict-config-]
-		begin
-			%[-dict-, g]
-			setconfig
-	}
-	%[-dict-config-]
-	
+
 	/uppertop {
 		/top h 1 sub def
+		0 0 right top setABCD
 	}
 	
 	/lowertop {
 		/top c 1 sub def
+		0 0 right top setABCD
 	}
 	
 	/middlefloor {
 		/middle top 2 div floor def
+		center middle setMNOPQ
 	}
 	
 	/middleceil {
 		/middle top 2 div ceiling def
+		center middle setMNOPQ
 	}
-	
-	%[g]
-	/lowerbegin {
-		dobegin
-			lowertop
-			middleceil
-	}	
-	%[-dict-config-]
-	
-	%[g]
-	/upperfloorbegin {
-		dobegin
-			uppertop
-			middleceil
-	}
-	%[-dict-config-]
-
-	%[g]
-	/upperceilbegin {
-		dobegin
-			uppertop
-			middlefloor
-	}
-	%[-dict-config-]
-	
-	%[-dict-config-]
-	/overbegin {
-		dup
-		begin
-			0 top 1 add translate
-			/top 1 def
-	}
-	%[-dict-config-]
 	
 	/subglyph <<
 		/uml {
-			1 setlinejoin 
-			0 setlinecap
-			0.5 top moveto
-			1 0 rlineto
-			1 0 rmoveto
-			1 0 rlineto
+			gsave
+				0 top 1 add translate
+				1 setlinejoin 
+				0 setlinecap
+				0.5 1 moveto
+				1 0 rlineto
+				1 0 rmoveto
+				1 0 rlineto
+				stroke
+			grestore
 		}
 		/breve {
-			0 setlinecap
-			1 top moveto
-			right 1 sub top lineto
+			gsave
+				0 top 1 add translate
+				0 setlinecap
+				1 1 moveto
+				right 1 sub 1 lineto
+				stroke
+			grestore
 		}
 	>>
 
