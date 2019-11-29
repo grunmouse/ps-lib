@@ -1,62 +1,91 @@
 %Латинские глифы для ЕСКД Б
 /eskd-b-latin <<
-	/LatinCapitalLetterA {}
-	/LatinCapitalLetterB {}
-	/LatinCapitalLetterC {}
-	/LatinCapitalLetterD {}
-	/LatinCapitalLetterE {}
-	/LatinCapitalLetterF {}
-	/LatinCapitalLetterG {}
-	/LatinCapitalLetterH {}
-	/LatinCapitalLetterI {}
-	/LatinCapitalLetterJ {}
-	/LatinCapitalLetterK {}
-	/LatinCapitalLetterL {}
-	/LatinCapitalLetterM {}
-	/LatinCapitalLetterN {}
-	/LatinCapitalLetterO {}
-	/LatinCapitalLetterP {}
-	/LatinCapitalLetterQ {}
-	/LatinCapitalLetterR {}
-	/LatinCapitalLetterS {}
-	/LatinCapitalLetterT {}
-	/LatinCapitalLetterU {}
-	/LatinCapitalLetterV {}
-	/LatinCapitalLetterW {}
+	/LatinCapitalLetterA {
+		CharProcs /CyrillicCapitalLetterA get exec
+	}
+	/LatinCapitalLetterB {
+		CharProcs /CyrillicCapitalLetterVe get exec
+	}
+	/LatinCapitalLetterC {
+		CharProcs /CyrillicCapitalLetterEs get exec
+	}
+	/LatinCapitalLetterD {
+		6 dobegin
+			uppertop
+			0 0 moveto
+			0 top lineto
+			1.5 right 0 gliphC
+		end
+	}
+	/LatinCapitalLetterE {
+		CharProcs /CyrillicCapitalLetterIe get exec
+	}
+	/LatinCapitalLetterF {
+		5 dobegin
+			uppertop
+			middleceil
+			0 0 moveto
+			right top beginABCD
+				0 middle setMNOPQ
+				B lineto
+				C lineto
+				M moveto
+				O lineto
+			end
+		end
+	}
+	% /LatinCapitalLetterG {}
+	% /LatinCapitalLetterH {}
+	% /LatinCapitalLetterI {}
+	% /LatinCapitalLetterJ {}
+	% /LatinCapitalLetterK {}
+	% /LatinCapitalLetterL {}
+	% /LatinCapitalLetterM {}
+	% /LatinCapitalLetterN {}
+	% /LatinCapitalLetterO {}
+	% /LatinCapitalLetterP {}
+	% /LatinCapitalLetterQ {}
+	% /LatinCapitalLetterR {}
+	% /LatinCapitalLetterS {}
+	% /LatinCapitalLetterT {}
+	% /LatinCapitalLetterU {}
+	% /LatinCapitalLetterV {}
+	% /LatinCapitalLetterW {}
 	/LatinCapitalLetterX {
 		8 dobegin
 			uppertop
 			0 0 moveto
-			right top gliphx
+			right top gliphX
 		end
 	}
-	/LatinCapitalLetterY {}
-	/LatinCapitalLetterZ {}
-	/LatinSmallLetterA {}
-	/LatinSmallLetterB {}
-	/LatinSmallLetterC {}
-	/LatinSmallLetterD {}
-	/LatinSmallLetterE {}
-	/LatinSmallLetterF {}
-	/LatinSmallLetterG {}
-	/LatinSmallLetterH {}
-	/LatinSmallLetterI {}
-	/LatinSmallLetterJ {}
-	/LatinSmallLetterK {}
-	/LatinSmallLetterL {}
-	/LatinSmallLetterM {}
-	/LatinSmallLetterN {}
-	/LatinSmallLetterO {}
-	/LatinSmallLetterP {}
-	/LatinSmallLetterQ {}
-	/LatinSmallLetterR {}
-	/LatinSmallLetterS {}
-	/LatinSmallLetterT {}
-	/LatinSmallLetterU {}
-	/LatinSmallLetterV {}
-	/LatinSmallLetterW {}
-	/LatinSmallLetterX {}
-	/LatinSmallLetterY {}
-	/LatinSmallLetterZ {}
+	% /LatinCapitalLetterY {}
+	% /LatinCapitalLetterZ {}
+	
+	% /LatinSmallLetterA {}
+	% /LatinSmallLetterB {}
+	% /LatinSmallLetterC {}
+	% /LatinSmallLetterD {}
+	% /LatinSmallLetterE {}
+	% /LatinSmallLetterF {}
+	% /LatinSmallLetterG {}
+	% /LatinSmallLetterH {}
+	% /LatinSmallLetterI {}
+	% /LatinSmallLetterJ {}
+	% /LatinSmallLetterK {}
+	% /LatinSmallLetterL {}
+	% /LatinSmallLetterM {}
+	% /LatinSmallLetterN {}
+	% /LatinSmallLetterO {}
+	% /LatinSmallLetterP {}
+	% /LatinSmallLetterQ {}
+	% /LatinSmallLetterR {}
+	% /LatinSmallLetterS {}
+	% /LatinSmallLetterT {}
+	% /LatinSmallLetterU {}
+	% /LatinSmallLetterV {}
+	% /LatinSmallLetterW {}
+	% /LatinSmallLetterX {}
+	% /LatinSmallLetterY {}
+	% /LatinSmallLetterZ {}
 
 >> def
