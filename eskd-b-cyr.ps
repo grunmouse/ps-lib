@@ -2,184 +2,154 @@
 
 /eskd-b-cyrillic <<
 	/CyrillicCapitalLetterA {
-		7 setconfig uppertop middlefloor
-			1 setlinejoin
-			0 0 moveto
-			center top lineto
-			right 0 lineto
-			center top div 2 mul dup 2 moveto
-			right exch sub 2 lineto
-			
-		
+		7 setconfig uppertop
+		/middle 2 def
+		1 setlinejoin
+		A moveto
+		N lineto
+		D lineto
+		A N 2 2crossh moveto
+		N D 2 2crossh lineto
 	}
 	/CyrillicCapitalLetterBe {
 		6 setconfig uppertop middleceil
-			0 top moveto
-			0 0 lineto
-			1 right middle gliphC
-			0 top moveto
-			right 1 sub 0 rlineto
-			
-		
+		/center right 1 sub def
+		B moveto
+		A lineto
+		1 O gliphC
+		B moveto
+		right 1 sub 0 rlineto
 	}
 	/CyrillicCapitalLetterVe {
 		6 setconfig uppertop middleceil
-			0 top moveto
-			0 0 lineto
-			1 right middle gliphC
-			0 top moveto
-			right 1 sub middle beginABCD
-				D C 1 arct
-				C B 2 arct
-			end
+		/center right 1 sub def
+		B moveto
+		A lineto
+		1 O gliphC
+		B moveto
+		N Q 1 arct
+		Q M 2 arct
 		
 	}
 	/CyrillicCapitalLetterGhe {
-		4 setconfig uppertop middleceil
-			0 0 moveto
-			0 top lineto
-			right 1 add top lineto
+		4 setconfig uppertop
+		/right inc
+		A moveto
+		B lineto
+		C lineto
 		
 	}
 	/CyrillicCapitalLetterDe {
-		5 setconfig uppertop middleceil
-			-1 -1 moveto
-			-1 0 lineto
-			right 1 add 0 lineto
-			0 -1 rlineto
-			0 0 moveto
-			1 setlinejoin 
-			1  top lineto
-			right top  lineto
-			0 setlinejoin 
-			right 0 lineto
+		5 setconfig uppertop
+		-1 -1 moveto
+		-1 0 lineto
+		right 1 add 0 lineto
+		0 -1 rlineto
+		0 0 moveto
+		1 setlinejoin 
+		1  top lineto
+		right top  lineto
+		0 setlinejoin 
+		right 0 lineto
 		
 	}
 	/CyrillicCapitalLetterIe {
 		5 setconfig uppertop middleceil
-			right 0 moveto
-			0 0 lineto
-			0 top lineto
-			right top lineto
-			0 middle moveto
-			3 0 rlineto
+		right 0 moveto
+		0 0 lineto
+		0 top lineto
+		right top lineto
+		0 middle moveto
+		3 0 rlineto
 		
 	}
 	/CyrillicCapitalLetterIo {
-		CharProcs /CyrillicCapitalLetterIe get exec
+		CyrillicCapitalLetterIe
 		stroke
-		
 		subglyph /uml get exec
-				
 	}
 	/CyrillicCapitalLetterZhe {
 		8 setconfig uppertop middleceil
 			
-			center 0 moveto
-			center top lineto
-			
-			center middle moveto
-			right top lineto
-			center middle moveto
-			0 top lineto
-			
-			center middle moveto 
-			top middle sub center div dup
-			1 exch rmoveto
-			right 0 lineto
-			
-			center middle moveto
-			-1 exch rmoveto
-			0 0 lineto
-			
+		P moveto N lineto
 		
+		Q moveto C lineto
+		Q moveto B lineto
+		
+		Q C center inc 2crossv moveto
+		D lineto
+		
+		Q B center dec 2crossv moveto
+		A lineto
 	}
 	/CyrillicCapitalLetterZe {
 		5 setconfig uppertop middleceil
-			1 setlinecap
-			0 0 moveto
-			right top beginABCD
-				center middle setMNOPQ
-				0 1 moveto
-				A D 1 arct
-				D O 2 arct
-				O Q 2 arct
-				-1 0 rlineto
-				1 0 rmoveto
-				O C 2 arct
-				C B 1 arct
-				B A 1 arct
-			end
-		
+		/center dec
+		1 setlinecap
+		0 1 moveto
+		A D 1 arct
+		D O 2 arct
+		O Q 2 arct
+		Q moveto
+		O C 2 arct
+		C B 1 arct
+		B A 1 arct
 	}
 	/CyrillicCapitalLetterI {
-		6 setconfig uppertop middleceil
-			1 setlinejoin 
-			0 top moveto
-			right 0 gliphN
+		6 setconfig uppertop
+		1 setlinejoin 
+		2 setlinecap
+		B moveto
+		D gliphN
 		
 	}
 	/CyrillicCapitalLetterShortI {
-		2 setlinecap
-		CharProcs /CyrillicCapitalLetterI get exec
+		CyrillicCapitalLetterI
 		stroke
-		
-			subglyph /breve get exec
+		subglyph /breve get exec
 		
 	}
 	/CyrillicCapitalLetterKa {
 		5 setconfig uppertop middleceil
-			0 0 moveto
-			0 top lineto
-			0 middle moveto
-			right top lineto
-			0 middle moveto 
-			top middle sub middle div 1 rmoveto
-			right 0 lineto
+		A moveto B lineto
+		M moveto
+		C lineto
+		M C 1 2crossv moveto
+		D lineto
 		
 	}
 	/CyrillicCapitalLetterEl {
-		6 setconfig uppertop middleceil
-			0 0 moveto
-			2 top lineto
-			right top lineto
-			right 0 lineto
-			
-		
+		6 setconfig uppertop
+		0 0 moveto
+		2 top lineto
+		right top lineto
+		right 0 lineto
 	}
 	/CyrillicCapitalLetterEm {
 		7 setconfig uppertop middleceil
-			1 setlinejoin 
-			0 0 moveto
-			0 top lineto
-			center middle lineto
-			right top lineto
-			right 0 lineto
-			
-		
+		1 setlinejoin 
+		A moveto
+		B lineto
+		Q lineto
+		C lineto
+		D lineto
 	}
 	/CyrillicCapitalLetterEn {
 		6 setconfig uppertop middleceil
-			0 0 moveto
-			right top middle gliphH
-			
-		
+		A moveto
+		C middle gliphH
 	}
 	/CyrillicCapitalLetterO {
 		6 setconfig uppertop middleceil
-			0 0 moveto
-			2 right top gliphO
-			
-		
+		A moveto
+		2 C gliphO
 	}
 	/CyrillicCapitalLetterPe {
 		6 setconfig uppertop middleceil
-			0 0 moveto
-			0 top lineto
-			right top lineto
-			right 0 lineto
-			
-		
+		0 0 moveto
+		0 top lineto
+		right top lineto
+		right 0 lineto
 	}
 	/CyrillicCapitalLetterEr {
 		6 setconfig uppertop middlefloor
@@ -216,85 +186,80 @@
 	}
 	/CyrillicCapitalLetterEf {
 		8 setconfig uppertop middlefloor
-			center 0 moveto
-			0 top rlineto
-			0 2 moveto
+		center 0 moveto
+		0 top rlineto
+		0 2 moveto
 
-				2 
-				right 
-				top 2 sub 
-			gliphO
+		2 
+		right 
+		top 2 sub 
+		gliphO
 			
 		
 	}
 	/CyrillicCapitalLetterHa {
 		7 setconfig uppertop middlefloor
-			0 0 moveto
-			right top gliphX
+		A moveto C gliphX
 		
 	}
 	/CyrillicCapitalLetterTse {
 		6 setconfig uppertop middlefloor
-			0 top  moveto
-			0 0 lineto
-			g 0 lineto
-			0 -1 rlineto
-			right top moveto
-			right 0 lineto
+		0 top  moveto
+		0 0 lineto
+		g 0 lineto
+		0 -1 rlineto
+		right top moveto
+		right 0 lineto
 			
 		
 	}
 	/CyrillicCapitalLetterChe {
 		6 setconfig uppertop middlefloor
-			0 top moveto
-			right middle 1 arcYX
-			right top moveto
-			right 0 lineto
+		0 top moveto
+		right middle 1 arcYX
+		right top moveto
+		right 0 lineto
 			
 		
 	}
 	/CyrillicCapitalLetterSha {
 		8 setconfig uppertop middlefloor
-			0 top moveto
-			0 0 lineto
-			right 0 lineto
-			right top lineto
-			center 0 moveto
-			0 top rlineto
-			
-		
+		B moveto
+		A lineto
+		D lineto
+		C lineto
+		P moveto
+		N lineto
 	}
 	/CyrillicCapitalLetterShcha {
-		8 setconfig uppertop middlefloor
-			0 top moveto
-			0 0 lineto
-			right 0 lineto
-			right top lineto
-			center 0 moveto
-			0 top rlineto
-			right 1 add 0 moveto
-			0 -1 rlineto
-			
-		
+		8 setconfig uppertop
+		B moveto
+		A lineto
+		D lineto
+		C lineto
+		P moveto
+		N lineto
+		right inc 0 moveto
+		0 -1 rlineto
 	}
 	/CyrillicCapitalLetterHardSign {
 		6 setconfig uppertop middleceil
-			0 0 moveto
-			1 right middle gliphC
-			0 0 moveto
-			0 top lineto
-			-2 0 rlineto
+		A moveto
+		1 O gliphC
+		A moveto
+		B lineto
+		-2 0 rlineto
 			
 		
 	}
 	/CyrillicCapitalLetterYeru {
 		7 setconfig uppertop middleceil
-			0 0 moveto
-			1 4 middle gliphC
-			0 0 moveto
-			0 top lineto
-			right top moveto
-			right 0 lineto
+		0 0 moveto
+		1 4 middle gliphC
+		0 0 moveto
+		0 top lineto
+		right top moveto
+		right 0 lineto
 			
 				
 	}

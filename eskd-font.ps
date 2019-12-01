@@ -22,6 +22,8 @@
 		/g exch def %определяем g
 		/right g 1 sub def %легаси
 		/center right 2 div def
+		/left 0 def
+		/bottom 0 def
 		
 		g a add  
 		0
@@ -42,25 +44,35 @@
 	}
 	%[]
 	
+	/A {left bottom} def
+	/B {left top} def
+	/C {right top} def
+	/D {right bottom} def
+	/M {left middle} def
+	/N {center top} def
+	/O {right middle} def
+	/P {center bottom} def
+	/Q {center middle} def
 
 	/uppertop {
 		/top h 1 sub def
-		0 0 right top setABCD
 	}
 	
 	/lowertop {
 		/top c 1 sub def
-		0 0 right top setABCD
+	}
+	
+	/lowermiddle {
+		/middle c dec def
+		/top h dec def
 	}
 	
 	/middlefloor {
 		/middle top 2 div floor def
-		center middle setMNOPQ
 	}
 	
 	/middleceil {
 		/middle top 2 div ceiling def
-		center middle setMNOPQ
 	}
 	
 	/subglyph <<
@@ -82,6 +94,16 @@
 				0 setlinecap
 				1 1 moveto
 				right 1 sub 1 lineto
+				stroke
+			grestore
+		}
+		/dot {
+			gsave
+				0 top inc translate
+				1 setlinejoin 
+				0 setlinecap
+				0 2.5 moveto
+				0 1.5 lineto
 				stroke
 			grestore
 		}
@@ -121,6 +143,7 @@ def
 	[
 		(0123456789АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя ) utf8load
 		(ABCDEFGHIJKLPMNOPQRSTUVWXYZ) utf8load
+		(abcdefghijklpmnopqrstuvwxyz) utf8load
 	]
 	encoding-from-points
 def

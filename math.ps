@@ -26,3 +26,36 @@
 	}
 	if
 } def
+
+%Инкремент вершины стека или значения по имени из вершины стека
+/inc {
+	dup type
+	<<
+		/nametype {
+			dup 
+			load
+			inc
+			def
+		}
+		/integertype {1 add}
+		/realtype {1 add}
+	>>
+	exch get exec
+} def
+
+%Декремент вершины стека или значения по имени из вершины стека
+/dec {
+	dup type
+	<<
+		/nametype {
+			dup 
+			cvx exec
+			dec
+			def
+		}
+		/integertype {1 sub}
+		/realtype {1 sub}
+	>>
+	exch get exec
+} def
+
