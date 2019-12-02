@@ -8,17 +8,20 @@
 
 		B lineto stroke
 		B moveto
+		B A 2sub
 		eskd-arrow
 	end
 } def
 
 
 
-/eskd-arrwowidth {
+/eskd-arrowlength {
 	currentlinewidth 0.4 div 2.5 mul
 } def
 
-%[AB] Рисует стрелку направленную по вектору AB, заканчивающуюся в currentpoint
+%Рисует стрелку направленную по переданному вектору, заканчивающуюся в currentpoint
+% Размеры стрелки калибруются относительно текущей толщины линии
+%[x, y]
 /eskd-arrow {
 	0 dict begin
 		/AB 2edef
@@ -37,11 +40,46 @@
 	end
 } def
 
+/arrowtoover {
+	0 dict begin
+		/B 2edef
+		/A currentpoint 2def
+
+		B eskd-arrowlength 1.2 mul linetoover
+		stroke
+		B moveto
+		A B 2sub eskd-arrow
+	end
+} def
+
 /sizelineto {
 	0 dict begin
 		/B 2edef
 		/A currentpoint 2def
 		/C A B 2center 2def
 		
+		C A 2sub 2abs eskd-arrowlength lt
+		{
+			C moveto A arrowtoover
+			C moveto B arrowtoover
+		}
+		{
+			C moveto A arrowto 
+			C moveto B arrowto
+		}
+		ifelse
+	end
+} def
+
+
+%Рисует линию в точку x,y и продолжает её дальше на длину over
+%[x, y, over]
+/linetoover {
+	0 dict begin
+		/over exch def
+		/B 2edef
+		B currentpoint 2sub 2ort over 2mul B 2add
+		lineto
+		B moveto
 	end
 } def
