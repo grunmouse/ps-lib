@@ -10,6 +10,10 @@
 	2 copy
 } def
 
+/2copy{
+	2 mul copy
+}
+
 /2pop{
 	pop pop
 } def
@@ -271,35 +275,3 @@
 	end
 } def
 
-%находит наибольший доступный радиус скругления для arct
-%[x1, y1, x2, y2]
-/max-arct {
-	0 dict begin
-		/C 2edef
-		/B 2edef
-		/A currentpoint 2def
-		/a A B 2sub 2def
-		/c C B 2sub 2def
-		a 2hypot
-		c 2hypot
-		2 copy 2 copy
-		%[a, c, a, c, a, c]
-		gt %a>c
-		{
-			exch
-		}
-		if
-		pop
-		%[a, c, S]
-		/S exch def
-		mul
-		/ac exch def
-		
-		/sinT a c 2times abs ac div def
-		/cosT a c 2cdot ac div def
-		
-		/tgt 1 cosT sub sinT div def
-		
-		S tgt mul
-	end
-} def

@@ -11,16 +11,6 @@
 	]
 } def
 
-%[arr]
-/dup-array {
-	dup
-	%[arr, arr]
-	dup length array
-	%[arr, newarr]
-	copy
-} def
-
-
 %Копирует значения из from в into, причём /.notdef считается отсутствием значения и не копируется
 %[from, into]
 /merge-encoding {

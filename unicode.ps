@@ -149,6 +149,9 @@
 %[font]
 
 %@param {array<int>} points - массив номеров кодовых точек
+%Создаёт новый словарь, содержащий 
+% /Encoding {array<name>}
+% /UEncoding {dict<(int cvnint).int>}
 %[points]
 /encoding-from-points {
 	%[code set]
@@ -172,12 +175,13 @@
 	end
 } def
 
+%Перекодировать массив кодовых точек в строку с помощью UEncoding текущего шрифта
+%@param {array<int>} points
+%@return {string}
+%[points]
 /fencode {
 	currentfont	
 	/UEncoding 
-	
-	%2 copy known not
-	%{}if
 	get
 	utfToStr 
 } def

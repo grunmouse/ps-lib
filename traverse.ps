@@ -64,12 +64,22 @@
 %[result]
 
 /==dict {
-	(<<) ==
-	{
-		exch == ==
-	}forall
-	(>>) ==
+	[ 
+		exch
+		{}forall
+	]
+	==
 } def
+
+%[arr]
+/dup-array {
+	dup
+	%[arr, arr]
+	dup length array
+	%[arr, newarr]
+	copy
+} def
+
 
 %Берёт значение из словаря, если оно там есть, и кладёт в стек 0, если нет
 %[dict, key]

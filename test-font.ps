@@ -28,7 +28,8 @@ newpath
 stroke
 
 
-/eskd-b-orto-font findfont
+/eskd-b-font findfont
+%/eskd-b-orto-font findfont
 10 scalefont
 setfont
 
@@ -89,4 +90,5 @@ setfont
 (nopqrstuvwxyz) utf8points fshow
 
 30 250 17 13 mul sub moveto
-[(H) utf8load 16#2080 16#2080 16#2081 (O) utf8load] fshow
+[(H) utf8load 16#2080 16#2080 16#2081 (O) utf8load ( \342\214\200) utf8load 16#2300] fshow
+11 100 010 10 001 100 10 000 000
