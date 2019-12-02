@@ -1,0 +1,18 @@
+%!PS-Adobe-3.0
+
+
+%ps2pdf -dNOSAFER test-arrow.ps - ключи вызова
+(../ps-steal/steal.ps) run
+
+(eskd-arrow.ps) stealfile
+(form-a4.ps) stealfile
+
+in2mm
+
+50 50 translate
+
+%10 10 scale
+
+0.4 setlinewidth
+
+0 0 moveto 100 150 arrowto stroke

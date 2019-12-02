@@ -1,0 +1,47 @@
+{(2d.ps) stealfile} /2edef ifnotkey
+
+%[x, y]
+/arrowto {
+	0 dict begin
+		/B 2edef
+		/A currentpoint 2def
+
+		B lineto stroke
+		B moveto
+		eskd-arrow
+	end
+} def
+
+
+
+/eskd-arrwowidth {
+	currentlinewidth 0.4 div 2.5 mul
+} def
+
+%[AB] Рисует стрелку направленную по вектору AB, заканчивающуюся в currentpoint
+/eskd-arrow {
+	0 dict begin
+		/AB 2edef
+		gsave
+			currentpoint translate
+			currentlinewidth 0.4 div dup scale
+			0.4 setlinewidth
+			AB 2ort 2XMatrix
+			concat
+			1 setlinejoin
+			-2.5 0.441 moveto
+			0 0 lineto
+			-2.5 -0.441 lineto
+			stroke
+		grestore
+	end
+} def
+
+/sizelineto {
+	0 dict begin
+		/B 2edef
+		/A currentpoint 2def
+		/C A B 2center 2def
+		
+	end
+} def

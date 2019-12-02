@@ -82,21 +82,21 @@
 % codePoints - массив кодовых точек преобразуемой строки
 % encoding - словарь, оторбражающий номер кодовой точки на значение байта однобайтовой кодировки
 %[codePoints, encoding]
-/utfToOneByte {
-	0 dict begin
-		/encoding exch def
-		/arr exch def
-		[
-			arr
-			{
-				encoding exch
-				intcvn
-				safeGet
-			}
-			forall
-		]
-	end
-} def
+% /utfToOneByte {
+	% 0 dict begin
+		% /encoding exch def
+		% /arr exch def
+		% [
+			% arr
+			% {
+				% encoding exch
+				% intcvn
+				% safeGet
+			% }
+			% forall
+		% ]
+	% end
+% } def
 
 %[codePoints, encoding]
 /utfToStr {
@@ -152,6 +152,7 @@
 %Создаёт новый словарь, содержащий 
 % /Encoding {array<name>}
 % /UEncoding {dict<(int cvnint).int>}
+%
 %[points]
 /encoding-from-points {
 	%[code set]
@@ -180,11 +181,20 @@
 %@return {string}
 %[points]
 /fencode {
-	currentfont	
-	/UEncoding 
-	get
+	currentfont	/UEncoding get
 	utfToStr 
 } def
+
+%Если текущий шрифт - UTF-ный, преобразует строку из utf8 в кодировку текущего шрифта
+%Если нет - оставляет неизменным.
+%[str]
+/utf8encode {
+	currentfont /UEncoding known
+	{
+		utf8points fencode 
+	}
+	if
+}
 
 /fshow {
 	fencode show
@@ -192,4 +202,12 @@
 
 /fstringwidth {
 	fencode stringwidth
+} def
+
+/utf8show {
+	utf8encode show
+} def
+
+/utf8stringwidth {
+	utf8encode stringwidth
 } def
