@@ -1,0 +1,72 @@
+%Находит уникальные значения в массиве или строке
+%[{array|string}source]
+/unique {
+	{
+		%[value, key]
+		pop dup anycvn
+		%[value, key]
+	}
+	0 dict
+	mappairs
+	dict-values
+} def
+%[{array}]
+
+%[arr]
+/dup-array {
+	dup
+	%[arr, arr]
+	dup length array
+	%[arr, newarr]
+	copy
+} def
+
+
+%[arr]
+/shaker-sort {
+	0 dict begin 
+		/arr exch def
+		/right arr length 2 sub def
+		/left 0 def
+		
+		%Сортирует пару чисел по переданному индексу
+		%[i]
+		/sort-pair{
+			/i exch def
+			/j i 1 add def
+
+			arr i get
+			arr j get
+			2 copy
+			ge
+			{
+				%[arr[i], att[j]]
+				arr i 3 -1 roll put
+				arr j 3 -1 roll put
+			}
+			{
+				pop pop
+			}
+			ifelse
+		} def
+		
+		{
+			left 1 right
+			{sort-pair}
+			for
+			/right right 1 sub def
+			
+			right -1 left
+			{sort-pair}
+			for
+			/left left 1 add def
+			
+			%Постусловие
+			left right 1 add le not
+			{exit}
+			if
+		}loop
+		arr
+	end
+} def
+%[arr]

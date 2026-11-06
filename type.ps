@@ -1,0 +1,52 @@
+/to-unar-function {
+	dup
+	xcheck
+	not
+	{
+		[ exch
+		/pop exch
+		]
+		cvx
+	}
+	if
+} def
+
+%тип данных верхнего элемента стека, стек под ним не изменяется
+/safetype {
+	count
+	0 eq
+	{
+		/nulltype
+	}
+	{
+		dup type
+	}
+	ifelse
+} def
+
+/isnumber {
+	safetype
+	dup
+	/integertype eq
+	exch
+	/realtype eq or	
+} def
+
+
+%преобразует число в имя, используется для словарей с числовыми ключами
+/intcvn {
+	40 string cvs cvn
+} def
+
+/anycvn {
+	dup type
+	<<
+		/stringtype {cvn}
+		/nametype {}
+		/integertype {intcvn}
+		/realtype {intcvn}
+	>>
+	exch get exec
+} def
+
+

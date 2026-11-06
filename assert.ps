@@ -1,0 +1,97 @@
+
+(index.ps) stealfile
+
+0 dict begin
+
+/ps-package-assert (1.0.0) def
+
+/black   (\033[30m) def
+/red     (\033[31m) def
+/green   (\033[32m) def
+/lite-green   (\033[32;1m) def
+/yellow  (\033[33m) def
+/blue    (\033[34m) def
+/magenta (\033[35m) def
+/cyan    (\033[36m) def
+/white   (\033[37;1m) def
+
+% Жирный и сброс всех атрибутов
+/bold    (\033[1m) def
+/reset   (\033[0m) def
+
+/checkmark (\342\210\232) def 
+/beep (\342\200\242) def  
+/crossmark ( ) def  
+
+/level 0 def
+
+/ident {
+	1 1 level {pop ( ) print} for
+} def
+
+%[title, message, ok]
+/assert {
+	ident
+	{
+		pop
+		checkmark lite-green cprint
+		( ) print
+		white cprint
+		() =
+	}
+	{
+		crossmark red cprint
+		( ) print
+		exch
+		white cprint
+		( ) print
+		red cprint
+		() =
+	}
+	ifelse
+} def
+
+/cprint {
+	print
+	print
+	reset print
+} def
+
+%[title, message, actual, expected]
+/equal {
+	2 dict begin
+		/expected exch def
+		/actual exch def
+		/message exch def
+		
+		[
+			message
+			( )
+			red actual any-to-string reset
+			( == )
+			green expected any-to-string reset
+		]
+		()
+		join
+		actual expected eq
+		assert
+	end
+} def
+
+%Title, ident
+/describe {
+	exch
+	white cprint () =
+	1 dict begin
+		level add /level exch def
+		currentdict
+	end
+} def
+
+
+(Title) 2 describe begin
+(Title) (error) true assert
+(Equal) () 1 2 equal
+(Equal) () 1 1 equal
+end
+

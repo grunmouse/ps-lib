@@ -1,0 +1,14 @@
+%Применяет функцию к нескольким элементам стека
+%[...items, len, fun]
+/for-stack-items {
+	0 dict begin
+		/fun exch def
+		%[...items, len]
+		array
+		astore
+		%[array(...items)]
+		/fun load
+		forall
+	end
+} def
+%[...items-after-fun]

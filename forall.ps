@@ -1,0 +1,151 @@
+
+%[{array|string|dict}source, proc]
+/forallpairs {
+	2 dict begin 
+		/forallpairs-proc exch def
+		/forallpairs-source exch def
+		%[source]
+		forallpairs-source type /dicttype eq
+		{
+			forallpairs-source
+			{
+				exch
+				%[value, key]
+				forallpairs-proc
+			} 
+			forall
+		}
+		{
+			%[proc, source]
+			0 1 
+			forallpairs-source length 1 sub
+			{
+				%[i]
+				dup
+				forallpairs-source exch get
+				%[i, value]
+				exch
+				%[value, i]
+				forallpairs-proc
+			} for
+		}
+		ifelse
+	end
+} def
+
+
+%[{array|string|dict}source, proc, {array|string|dict}result]
+/mappairs {
+	3 dict begin
+		/mappairs-result exch def
+		/mappairs-proc exch def
+		/mappairs-source exch def
+		
+		mappairs-source
+		{
+			%[value, key]
+			mappairs-proc
+			dup null eq 
+			{
+				pop pop
+			}
+			{
+				mappairs-result 
+				3 1 roll
+				exch
+				put
+			}
+			ifelse
+		}
+		forallpairs
+		
+		mappairs-result
+	end
+} def
+%[result]
+
+%{array|string|dict}souce
+/empty-copy {
+	dup length
+	exch type
+	<<
+		/arraytype {
+			array
+		}
+		/dicttype {
+			dict
+		}
+		/stringtype {
+			string
+		}
+	>>
+	exch get exec
+} def
+
+
+
+%{array|string|dict}source, proc
+/_map {
+	2 index
+	empty-copy
+	mappairs
+} def
+
+%{array|dict}source, proc
+/_filter {
+	0 dict begin
+		/fw-filter-cond exch def
+		/fw-filter-source exch def
+		
+		fw-filter-source type /dicttype eq
+		{
+			fw-filter-source
+			{
+				2 copy
+				fw-filter-cond not
+				{
+					pop pop
+					null null
+				} if
+			}
+			_map
+		}
+		{
+			[
+				fw-filter-source
+				{
+					2 copy
+					fw-filter-cond
+					{
+						pop
+					}
+					{
+						pop pop
+					} ifelse
+				} 
+				forallpairs
+			]
+		}
+		ifelse
+		
+	end
+} def
+
+%{array|string|dict}source, proc, init_akk
+/_reduce {
+	0 dict begin
+		/fw-reduce-akk exch def
+		/fw-reduce-proc exch def
+		
+		{
+			%value, key
+			fw-reduce-akk
+			3 1 roll
+			fw-reduce-proc
+			/fw-reduce-akk exch def
+		}
+		forallpairs
+		fw-reduce-akk
+	end
+} def
+

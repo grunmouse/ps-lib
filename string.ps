@@ -1,0 +1,143 @@
+%[a, b]
+/str-concat {
+	0 dict begin
+		/b exch def
+		/a exch def
+		/c a length b length add string def
+		
+		c 0 a putinterval
+		c a length b putinterval
+		c
+	end
+} def
+
+/int-to-string  { 40 string cvs } def
+
+/real-to-string {
+	dup dup
+	round eq
+	{
+		cvi
+	} if
+	40 string cvs
+} def
+
+/name-to-string { 100 string cvs} def
+
+/bool-to-string {{(TRUE)}{(FALSE)}ifelse} def
+
+/any-to-string {
+	dup type <<
+		/integertype {int-to-string}
+		/realtype {real-to-string}
+		/nametype {name-to-string}
+		/operatortype {name-to-string}
+		/stringtype {}
+		/booleantype {bool-to-string}
+		/nulltype {pop (NULL) }
+		/arraytype {
+			dup xcheck
+			{
+				pop
+				(function)
+			}
+			{
+				pop
+				(array)
+			}
+			ifelse
+		}
+		%/packedarraytype {}
+		%/dicttype {}
+        %/marktype      { pop (-mark-) }
+        %/savetype      { pop (-savecontext-) }
+        %/filetype      { pop (-file-) }
+		
+	>>
+	exch 2 copy known
+	{
+		get
+		exec
+	}
+	{
+		pop pop
+		(Type ) exch type name-to-string str-concat
+	} ifelse
+} def
+
+%[str, delim]
+/split {
+	dup length 0 eq
+	{
+		pop
+		[
+			exch
+			{
+				%charcode
+				1 string
+				dup
+				3 -1 roll
+				0 exch put
+			} forall
+		]
+	}
+	{
+		[ 3 1 roll
+			{
+				search
+				{
+					3 1 roll
+				}
+				{
+					exit
+				} ifelse
+			}loop
+		]
+	} ifelse
+} def
+
+%[arr, delim]
+/join {
+	0 dict begin
+		/delim exch def
+		/arr exch def
+		/ubound arr length 1 sub def
+		/pos arr length array def
+		/delim-pos arr length array def
+		/delim-length delim length def
+		/curpos 0 def
+		
+		0 1 ubound 
+		{
+			/i exch def
+			pos i curpos put
+			/curpos curpos arr i get length add def
+			delim-pos i curpos put
+			/curpos curpos delim-length add def
+		}
+		for
+		
+		/result 
+		ubound 0 ge 
+		{
+			delim-pos ubound get string
+		}
+		{
+			()
+		}
+		ifelse
+		def
+		 
+		0 1 ubound 
+		{
+			/i exch def
+			result pos i get arr i get putinterval
+			i ubound lt
+			{
+				result delim-pos i get delim putinterval
+			} if
+		}
+		for
+		result
+	end
+} def

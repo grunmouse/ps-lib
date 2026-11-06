@@ -1,0 +1,92 @@
+
+%[{array|string|dict}source]
+/invert {
+	{
+		exch anycvn
+	}
+	0 dict
+	mappairs
+} def
+%[dict]
+
+%Берёт значение из словаря, если оно там есть, и кладёт в стек 0, если нет
+%[dict, key]
+/safeGet {
+	2 copy known not
+	{pop pop 0}
+	{get}
+	ifelse
+} def
+
+%Принимает массив ключей и словарь, возвращает массив значений словаря
+%[array, dict]
+/map-with-dict {
+	0 dict begin
+		/dic exch def
+		/arr exch def
+		/result arr length array def
+		arr
+		{
+			%[value, key]
+			exch anycvn
+			dic exch get
+			exch
+		}
+		result
+		mappairs
+	end
+} def
+
+%создаёт новый словарь, в который последовательно копируются сначала dict1, а потом dict2
+%[dict2, dict1]
+/dict-extend {
+	<<>> copy copy
+} def
+
+%@param {array<dict>} arr - массив словарей, которые нужно сложить
+%[arr]
+/many-dict-copy {
+	0 dict begin
+		/arr exch def
+		/result <<>> def
+		
+		arr
+		{
+			result copy pop
+		}
+		forall
+		result
+	end
+} def
+
+/dict-keys {
+	0 dict begin
+		/source exch def
+		/i 0 def
+		source
+		{
+			%[value, key]
+			exch pop
+			i
+			/i i 1 add def
+		}
+		source length array
+		mappairs
+	end
+} def
+
+/dict-values {
+	0 dict begin
+		/source exch def
+		/i 0 def
+		source
+		{
+			%[value, key]
+			pop
+			i
+			/i i 1 add def
+		}
+		source length array
+		mappairs
+	end
+} def
